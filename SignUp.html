@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="joe.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brisky</title>
@@ -17,5 +17,28 @@
         <div class="pagebutton"><p>Sign Up</p></div>
         
     </div>
+    <div class="signup-box">
+        <h2>Sign Up</h2>
+        <form>
+            <input type="text" placeholder="First Name" name="first_name" required pattern="[A-Z][a-z]*">
+          
+            <input type="text" placeholder="Last Name" name="last_name" required pattern="[A-Z][a-z]*">
+            
+            <input type="email" placeholder="E-mail" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
+           
+            <input type="password" placeholder="Password" name="password" id="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+
+            <input type="password" placeholder="Confirm Password" name="confirm_password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+        
+            
+            <div class="phone-number-wrapper">
+              <span class="country-code">+20</span>
+              <input type="tel" placeholder="Phone Number" name="phone_number" pattern="[0-9]{10}" required>
+            </div>
+                        
+            <input type="number" placeholder="Age" name="age" min="14" required>
+            
+            <button type="submit">Sign Up</button>
+        </form>
 </body>
 </html>

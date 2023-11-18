@@ -2,20 +2,9 @@ body{
     background-color: #1F1F1F;
     font-family: Helvetica, Arial, sans-serif;
     background-image: url(assets/wallpaper.png);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
-    
     background-size:cover;
     
 }
-.Branch {
-    background-image: url(assets/Vegan-Supermarket.png);
-}
-
-
 .topbar{
     display:flex;
     justify-content: center;
@@ -38,34 +27,10 @@ body{
     justify-content: center;
     text-align: center;
 }
-/* branches css */
-.pagebutton:hover {
-    background-color: #6A0000;
-    color: #C0C0C0;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 150px;
-}
-
-.branch-page-text {
-    color: #ffffff;
-    font-size: 40px;
-    font-weight: bold;
-    margin-top: 70px;
-    text-align: center;
-    z-index: 1;
-}
-
-.branch-container {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 20px;
+/* login css*/
+.login-box {
+    background-color: #fff;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     max-width: 400px; 
@@ -127,29 +92,4 @@ body{
       
       .country-code {
         margin: 8px; 
-      }/*prodcuts css*/ 
-.product-section 
-h2 {
-    background-image: url('assets/products/meat1.jfif'); /* Replace with your image path */
-    background-size: cover;
-    color: #fff;
-    padding: 20px; /* Add padding for spacing */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    margin-bottom: 20px; /* Add margin for spacing between categories */
-    position: relative;
-    
-}
-
-.product-images {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    color: #fff;
-    margin-top: 20px; 
-    
-}
-
-.product-images img {
-    width: 150px;
-    margin-bottom: 10px;
-}
+      }
