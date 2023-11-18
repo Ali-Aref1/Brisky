@@ -5,65 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brisky - Login</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4; 
-        }
 
-        .topbar {
-            background-color: #5B0000;
-            color: #fff;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .pagebutton {
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        
-        .login-box {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 400px; 
-            margin: 50px auto; 
-        }
-
-        
-        .login-box input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        
-        .login-box button {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .login-box a {
-            color: #5B0000; 
-            text-decoration: underline;
-            font-size: 14px;
-            display: inline-block; 
-            margin-top: 10px;
-        }
-
-    </style>
 </head>
 <body>
     <div class="topbar">
@@ -78,7 +20,8 @@
     <div class="login-box">
         <h2>Login</h2>
         <form>
-            <input type="email" placeholder="E-mail" name="username" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+            
+            <input type="email" placeholder="E-mail" name="E-mail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
             <input type="password" placeholder="Password" name="password" required pattern=".{8,}">
             <button type="submit">Login</button>
         </form>
