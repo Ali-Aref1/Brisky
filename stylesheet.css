@@ -3,6 +3,7 @@ body{
     font-family: Helvetica, Arial, sans-serif;
     background-image: url(assets/wallpaper.png);
     background-size:cover;
+    
 }
 .topbar{
     display:flex;
