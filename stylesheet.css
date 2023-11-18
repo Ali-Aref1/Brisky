@@ -27,3 +27,88 @@ body{
     justify-content: center;
     text-align: center;
 }
+/* branches css */
+.pagebutton:hover {
+    background-color: #6A0000;
+    color: #C0C0C0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 150px;
+}
+
+.branch-page-text {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 70px;
+    text-align: center;
+    z-index: 1;
+}
+
+.branch-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 500px;
+    position:relative ;
+    z-index: 1;
+}
+
+.branch-list {
+    list-style: none;
+    padding: 0;
+}
+
+.branch-list-item {
+    margin: 10px 0;
+    cursor: pointer;
+    color: #5B0000;
+    transition: color 0.3s;
+    border-radius: 10px;
+    padding: 100px;
+    background-color: #fff;
+}
+
+.branch-list-item:hover {
+    color: #fff;
+    background-color: #5B0000;
+    
+}
+
+.browse-button {
+    background-color: #5B0000;
+    color: #fff;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.browse-button:hover {
+    background-color: #3A0000;
+}
+
+.branch-select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    border: 1px solid #5B0000;
+    border-radius: 10px;
+    transition: border-color 0.3s;
+}
+
+.branch-select:hover,
+.branch-select:focus {
+    border-color: #3A0000;
+}
