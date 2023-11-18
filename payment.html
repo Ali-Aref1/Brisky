@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Grocery Store - Checkout</title>
+    <link rel="stylesheet" href="styleee.css" />
+  </head>
+  <body>
+    <div class="iframe-container">
+        <iframe
+          src="index.html"
+          width="100%"
+          height="200"
+          frameborder="0"
+        ></iframe>
+      </div>
+    <header>
+      <h1>Green is Brisky</h1>
+    </header>
+
+    <main>
+      <h2>Proceed to Checkout</h2>
+
+      <p>
+        paragraph to write the whole amount and so on 👌
+      </p>
+
+      <form>
+        <label for="paymentMethod">Select Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod">
+          <option value="cash">Cash</option>
+          <option value="creditCard">Credit Card</option>
+          <option value="debitCard">Debit Card</option>
+        </select>
+
+        <div id="creditCardDetails" style="display: none">
+        <br></form>
+          <label for="creditCardNumber">Credit Card Number:</label>
+          <input type="text" id="creditCardNumber" name="creditCardNumber" />
+
+          <label for="expirationDate">Expiration Date:</label>
+          <input type="text" id="expirationDate" name="expirationDate" />
+
+
+        </div>
+        <br></form>
+      
+        
+
+        <label for="address">Delivery Address:</label>
+
+        <label for="addressLine1">Address Line 1:</label>
+        <textarea id="address" name="address"></textarea>
+    
+        <label for="addressLine2">Address Line 2:</label>
+        <textarea id="address" name="address"></textarea>
+    
+        <label for="zipCode">ZIP Code:</label>
+        <input type="text" id="zipCode" name="zipCode" class="address" />
+    
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" class="address" />
+
+        <br></form>
+
+        <br></form>
+
+        <div class="delivery-options">
+
+            <label for="deliveryOption">Select Delivery Option:</label>
+            <br></form>
+            <input
+                type="radio"
+                id="normalDelivery"
+                name="deliveryOption"
+                value="normal"
+                checked
+             />
+            <label for="normalDelivery">Normal Delivery</label>
+             <input
+               type="radio"
+               id="premiumDelivery"
+               name="deliveryOption"
+               value="premium"
+             />
+             <label for="premiumDelivery">Premium Delivery (extra cost)</label>
+          </div>
+
+        <br></form>
+        <br></form>
+        <br></form>
+
+        <button onclick="BUY()">Checkout</button>
+      </form>
+    </main>
+
+    <script>
+      function BUY() {
+        // Get selected payment method
+        const paymentMethod = document.getElementById("paymentMethod").value;
+
+        // Get credit card details (if applicable)
+        const creditCardNumber =
+          document.getElementById("creditCardNumber").value;
+        const expirationDate = document.getElementById("expirationDate").value;
+
+        // Get delivery information
+        const address = document.getElementById("address").value;
+        const deliveryOption = document.querySelector(
+          'input[name="deliveryOption"]:checked'
+        ).value;
+
+        // In a real-world scenario, you would process this information accordingly.
+        // For this example, let's log the details to the console.
+        console.log("Payment Method:", paymentMethod);
+        if (paymentMethod === "creditCard") {
+          console.log("Credit Card Number:", creditCardNumber);
+          console.log("Expiration Date:", expirationDate);
+        }
+        console.log("Delivery Address:", address);
+        console.log("Delivery Option:", deliveryOption);
+
+        // For demonstration purposes, open a new page
+        window.open("confirmation.html", "_blank");
+      }
+
+      // Show/hide credit card details based on the selected payment method
+      document
+        .getElementById("paymentMethod")
+        .addEventListener("change", function () {
+          const creditCardDetails =
+            document.getElementById("creditCardDetails");
+          if (this.value === "creditCard") {
+            creditCardDetails.style.display = "block";
+          } else {
+            creditCardDetails.style.display = "none";
+          }
+        });
+    </script>
+  </body>
+</html>

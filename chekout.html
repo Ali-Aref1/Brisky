@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenMarket - Checkout</title>
+    <link rel="stylesheet" href="styleee.css" />
+  </head>
+
+  <body>
+    <div class="iframe-container">
+      <iframe
+        src="index.html"
+        width="100%"
+        height="200"
+        frameborder="0"
+      ></iframe>
+    </div>
+    <header>
+      <h1>Green is Brisky</h1>
+    </header>
+
+    <main>
+      <h2>Checkout</h2>
+
+      <p>Your order summary goes here. list of groceries and total amount.</p>
+
+      <div class="section">
+        <h3>Vegetables</h3>
+        <div class="item-row">
+          <div class="item">
+            <img src="assets/carrots.jpg" alt="Carrots" />
+            <p><strong>Carrots:</strong> $1.99 per pound</p>
+          </div>
+          <div class="item">
+            <img src="assets/broccoli.jpg" alt="Broccoli" />
+            <p><strong>Broccoli:</strong> $2.49 per bunch</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Fruits</h3>
+        <div class="item-row">
+          <div class="item">
+            <img src="assets/tomatoes.jpg" alt="Tomatoes" />
+            <p><strong>Tomatoes:</strong> $0.99 per pound</p>
+          </div>
+          <div class="item">
+            <img src="assets/apple.jpg" alt="Apples" />
+            <p><strong>Apples:</strong> $1.49 per pound</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="total-section">
+        <h3>Total Price</h3>
+        <p id="totalPrice">$0.00</p>
+      </div>
+
+      <button onclick="openPaymentPage()" class="checkout-button">
+        Proceed to Checkout
+      </button>
+    </main>
+
+    <script>
+      function openPaymentPage() {
+        window.open("payment.html", "_blank");
+      }
+
+      function calculateTotal() {
+        const carrotPrice = 1.99;
+        const broccoliPrice = 2.49;
+        const tomatoPrice = 0.99;
+        const applePrice = 1.49;
+
+        const totalPrice =
+          carrotPrice + broccoliPrice + tomatoPrice + applePrice;
+
+        document.getElementById(
+          "totalPrice"
+        ).textContent = `$${totalPrice.toFixed(2)}`;
+      }
+
+      calculateTotal();
+    </script>
+  </body>
+</html>
