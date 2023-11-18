@@ -11,6 +11,7 @@ body{
     background-color: #5B0000;
     border: 2px solid #4B0000;
     height:175px;
+    border-radius: 20px;
 }
 .pagebutton{
     border: 2px solid #4B0000;
