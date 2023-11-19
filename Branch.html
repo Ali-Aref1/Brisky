@@ -1,29 +1,27 @@
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="hazem.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brisky - Branch Page</title>
-    
+ 
 </head>
-<body>
+<body style="background-image: url(assets/Vegan-Supermarket.png);">
 
-    <div class="background"></div>
     
+    <!--Top bar(Don't edit!!)-->
     <div class="topbar">
-        <div class="pagebutton"><p>Account</p></div>
-        <div class="pagebutton"><p>Orders</p></div>
+        <button class="pagebutton"><p>Account</p></button>
+        <button class="pagebutton"><p>Orders</p></button>
+        <a href="index.html"><img src="assets/logo.png" width="150"></a>
+        <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
+        <button onclick="location.href='SignUp.html'" class="pagebutton"><p>Sign Up</p></button>
         
-        <div class="logo">
-            <a href="index.html"><img src="assets/logo.png" alt="Logo" width="150"></a>
-        </div>
-        
-        <div class="pagebutton"><p>Login</p></div>
-        <div class="pagebutton"><p>Sign Up</p></div>
     </div>
+    <!--End Top bar-->
 
     <div class="branch-page-text">Branches</div>
-
+    <br></br>
     <div class="branch-container">
         <select class="branch-select">
             <option value="" disabled selected>Choose your nearest branch</option>
