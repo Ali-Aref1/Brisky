@@ -159,7 +159,7 @@ h2{
 .addtocart{
     
     border:none !important;
-    text-align: center;
+    text-align: left;
 }
 .cartbutton{
     background-color: #840000;
@@ -168,6 +168,7 @@ h2{
     border-radius: 20;
     border-radius:15px;
     border:none;
+    margin-left:5px;
 }
 .cartbutton:hover{
     background-color: #ff0e0e;
