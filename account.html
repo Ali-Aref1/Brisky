@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brisky - Account Management</title>
+</head>
+<body>
+    <div class="topbar">
+        <button class="pagebutton"><p>Account</p></button>
+        <button onclick="location.href='Branch.html'" class="pagebutton"><p>Orders</p></button>
+        <a href="index.html"><img src="assets/logo.png" width="150"></a>
+        <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
+        <button onclick="location.href='SignUp.html'" class="pagebutton"><p>Sign Up</p></button>
+        
+    </div><br>
+    <div class="main">
+        <div class="mainBox">
+            <h2>Account Management</h2>
+            You can modify all you account details here:<br><br>
+            
+            <form class="accountform">
+                <input type="text" placeholder="First Name" name="first_name" required pattern="[A-Z][a-z]*">
+              
+                <input type="text" placeholder="Last Name" name="last_name" required pattern="[A-Z][a-z]*">
+                
+                <input type="email" placeholder="E-mail" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
+               
+                <input type="password" placeholder="Password" name="password" id="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+    
+                <input type="password" placeholder="Confirm Password" name="confirm_password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+                <div class="phone-number-wrapper">
+                    <span class="country-code">+20</span>
+                    <input type="tel" placeholder="Phone Number" name="phone_number" pattern="[0-9]{10}" required>
+                  </div>
+                              
+                  <input type="number" placeholder="Age" name="age" min="14" required>
+                  <button type="button" class="button1" style="align-self: center; width:100%;">Payment Methods</button>
+                  <button type="submit" class="button1" style="align-self: flex-end;">Save Changes</button>
+        </div>
+    </div>
+</body>
+</html>

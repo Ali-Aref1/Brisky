@@ -9,16 +9,21 @@
 </head>
 <body>
     <div class="topbar">
-        <button class="pagebutton"><p>Account</p></button>
-        <button class="pagebutton"><p>Orders</p></button>
+        <button  onclick="location.href='account.html'" class="pagebutton"><p>Account</p></button>
+        <button onclick="location.href='Branch.html'" class="pagebutton"><p>Orders</p></button>
         <a href="index.html"><img src="assets/logo.png" width="150"></a>
         <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
         <button onclick="location.href='SignUp.html'" class="pagebutton"><p>Sign Up</p></button>
         
     </div>
-    <div class="home">
+    <div class="main">
         <div><h1>Welcome to Brisky!</h1></div>
-        <div class="homeBox"></div>
+        <div class="mainBox">
+            <h2>How may we help you today?</h2>
+            <button onclick="location.href='Branch.html'" class="button1" >Place Order</button>
+            <button class="button1">Order History</button><a href="Branch.html"></a>
+            <button onclick="location.href='account.html'" class="button1">Account Management</button>
+        </div>
     </div>
 </body>
 </html>

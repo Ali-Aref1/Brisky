@@ -1,19 +1,10 @@
-/*main css*/
-
 body{
     background-color: #1F1F1F;
     font-family: Helvetica, Arial, sans-serif;
     background-image: url(assets/wallpaper.png);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
-    
     background-size:cover;
     
 }
-
 .topbar{
     display:flex;
     justify-content: center;
@@ -36,72 +27,66 @@ body{
     justify-content: center;
     text-align: center;
 }
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 150px;
-}
 .pagebutton:hover {
     background-color: #6A0000;
     color: #C0C0C0;
 }
-.login-box input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+
+.main{
+    display:flex;
+    flex-direction: column;
+    gap:70px;
 }
-.login-box button {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+h1{
+    color:#FFFFFF;
+    text-align: center;
 }
-.login-box a {
-    color: #5B0000; 
+.mainBox{
+    align-self: center;
+    align-items:center;
+    background-color: #FFFFFF;
+    padding:20px;
+    border-radius:20px;
+    width:400px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+h2{
+    text-align: center;
     text-decoration: underline;
-    font-size: 14px;
-    display: inline-block; 
-    margin-top: 10px;
 }
-/*Sign Up css*/
-.signup-box {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 400px; 
-    margin: 50px auto; 
-    }
-    .signup-box input {
+.button1{
+    border: 2px solid #4B0000;
+    border-radius:12px;
+    background-color: #840000;
+    width:150px;
+    height:40px;
+    color:#FFFFFF;
+}
+.button1:hover{
+    background-color: #6A0000;
+}
+.accountform{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    align-self:self-start;
+    width:100%;
+}
+.accountform input{
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    }
-    .signup-box button {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    }
-    .phone-number-wrapper {
-        display: flex;
-        align-content: center;
-        font-size: small;
-      }
-      
-      .country-code {
-        margin: 8px; 
-      }
+}
+.phone-number-wrapper {
+    display: flex;
+    align-content: center;
+    font-size: small;
+  }
+  .country-code {
+    margin: 10px; 
+  }
