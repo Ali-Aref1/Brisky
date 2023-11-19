@@ -96,30 +96,36 @@ h2{
     width:90%;
 }
 .paymentMethods{
-    border:2px solid black;
     border-radius: 5px;
     width:90%;
+    border-collapse: collapse;
 }
-.paymentMethods th,td{
-    border:2px solid black;
+.paymentMethods th{
+    border:1px solid black;
+    padding:5px;
+}
+.paymentMethods td{
+    border:1px solid black;
+    padding:5px;
+    
 }
 .nameCell{
-    width:98%;
-    display:flex;
-    align-items:center;
-    gap:10px
+    gap:10px;
 
 }
 .deleteButton{
-    border:0px;
+    border:none;
     background-color: #840000;
     width:50px;
+    height:50px;
     border-radius: 15px;
     text-align: center;
     min-width: 50px;
+    margin-left:10px;
 }
 .deleteButton:hover{
     background-color: #ff0e0e;
+    filter: drop-shadow(0px 0px 4px #ff0e0e);
 }
 .plusButton{
     border:0px;
@@ -131,8 +137,39 @@ h2{
 }
 .plusButton:hover{
     background-color: #ff0e0e;
+    filter: drop-shadow(0px 0px 4px #ff0e0e);
 }
 .nameWrapper{
     display:flex;
     gap: 5px;
+}
+.orderHistory{
+    border-collapse:collapse;
+    width:80%;
+    text-wrap: nowrap;
+}
+.orderHistory th{
+    border:1px solid black;
+    padding:5px;
+}
+.orderHistory td{
+    border:1px solid black;
+    padding:5px;
+}
+.addtocart{
+    
+    border:none !important;
+    text-align: center;
+}
+.cartbutton{
+    background-color: #840000;
+    width:50px;
+    height:50px;
+    border-radius: 20;
+    border-radius:15px;
+    border:none;
+}
+.cartbutton:hover{
+    background-color: #ff0e0e;
+    filter: drop-shadow(0px 0px 4px #ff0e0e);
 }
