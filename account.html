@@ -21,23 +21,36 @@
             You can modify all you account details here:<br><br>
             
             <form class="accountform">
+                
                 <input type="text" placeholder="First Name" name="first_name" required pattern="[A-Z][a-z]*">
               
                 <input type="text" placeholder="Last Name" name="last_name" required pattern="[A-Z][a-z]*">
                 
                 <input type="email" placeholder="E-mail" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
                
-                <input type="password" placeholder="Password" name="password" id="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
-    
-                <input type="password" placeholder="Confirm Password" name="confirm_password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
                 <div class="phone-number-wrapper">
                     <span class="country-code">+20</span>
                     <input type="tel" placeholder="Phone Number" name="phone_number" pattern="[0-9]{10}" required>
                   </div>
                               
                   <input type="number" placeholder="Age" name="age" min="14" required>
-                  <button type="button" class="button1" style="align-self: center; width:100%;">Payment Methods</button>
+                  <button type="button" class="button1" style="align-self: flex-end; width:40%;">Change Password</button>
+                  
+                  
                   <button type="submit" class="button1" style="align-self: flex-end;">Save Changes</button>
+            </form>
+        </div>
+        <div class="mainBox">
+            <h2>Payment Methods</h2>
+            <table class="paymentMethods">
+                <tr>
+                    </th><th>Name</th><th>Number</th><th>Expiry Date</th>
+                </tr>
+                <tr>
+                    <td class="nameCell"><img src="assets/credit-card.png" style="width:50px">Placeholder Card</td><td>1234567890</td><td>11/24</td><td class="deleteButton"><img src="assets/trash-can.png" width="80%"></td>
+                </tr>
+            </table>
+            <button type="button" class="plusButton"><img src="assets/plus.png" style="width:80%"></button>
         </div>
     </div>
 </body>
