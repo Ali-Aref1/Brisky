@@ -48,7 +48,7 @@ h1{
     background-color: #FFFFFF;
     padding:20px;
     border-radius:20px;
-    width:80%;
+    width:50%;
     display: flex;
     flex-direction: column;
     gap:5px;
@@ -116,6 +116,7 @@ h2{
     width:50px;
     border-radius: 15px;
     text-align: center;
+    min-width: 50px;
 }
 .deleteButton:hover{
     background-color: #ff0e0e;
@@ -130,4 +131,8 @@ h2{
 }
 .plusButton:hover{
     background-color: #ff0e0e;
+}
+.nameWrapper{
+    display:flex;
+    gap: 5px;
 }
