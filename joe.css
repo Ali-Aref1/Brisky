@@ -93,3 +93,13 @@ body{
       .country-code {
         margin: 8px; 
       }
+      .image-container {
+        display: flex; 
+        justify-content: space-between;
+        
+    }
+
+    .image-container img {
+        width: 50px; 
+        height: auto; 
+    }
