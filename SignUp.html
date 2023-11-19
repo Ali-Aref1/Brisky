@@ -8,15 +8,16 @@
 
 </head>
 <body>
+    <!--Top bar(Don't edit!!)-->
     <div class="topbar">
-        <div class="pagebutton"><p>Account</p></div>
-        <div class="pagebutton"><p>Orders</p></div>
-        
+        <button class="pagebutton"><p>Account</p></button>
+        <button class="pagebutton"><p>Orders</p></button>
         <a href="index.html"><img src="assets/logo.png" width="150"></a>
-        <div class="pagebutton"><p>Login</p></div>
-        <div class="pagebutton"><p>Sign Up</p></div>
+        <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
+        <button class="pagebutton"><p>Sign Up</p></button>
         
     </div>
+    <!--End Top bar-->
     <div class="signup-box">
         <h2>Sign Up</h2>
         <form>
@@ -35,10 +36,11 @@
               <span class="country-code">+20</span>
               <input type="tel" placeholder="Phone Number" name="phone_number" pattern="[0-9]{10}" required>
             </div>
-                        
-            <input type="number" placeholder="Age" name="age" min="14" required>
-            
-            <button type="submit">Sign Up</button>
+           
+           
+           <input type="date" id="dob" name="date_of_birth" required>
+           
+           <button type="submit">Sign Up</button>
         </form>
 </body>
 </html>

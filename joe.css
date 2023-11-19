@@ -1,10 +1,19 @@
+/*main css*/
+
 body{
     background-color: #1F1F1F;
     font-family: Helvetica, Arial, sans-serif;
     background-image: url(assets/wallpaper.png);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    
     background-size:cover;
     
 }
+
 .topbar{
     display:flex;
     justify-content: center;
@@ -26,6 +35,18 @@ body{
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+.logo img {
+    width: 150px;
+}
+.pagebutton:hover {
+    background-color: #6A0000;
+    color: #C0C0C0;
+}
+.logo {
+    display: flex;
+    align-items: center;
 }
 /* login css*/
 .login-box {
