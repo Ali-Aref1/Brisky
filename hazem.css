@@ -48,60 +48,54 @@ body{
     background-color: #6A0000;
     color: #C0C0C0;
 }
-.login-box input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+
+/*Branch CSS*/
+.Branch {
+    background-image: url(assets/Vegan-Supermarket.png);
 }
-.login-box button {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+
+.branch-page-text {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 70px;
+    text-align: center;
+    z-index: 1;
 }
-.login-box a {
-    color: #5B0000; 
-    text-decoration: underline;
-    font-size: 14px;
-    display: inline-block; 
-    margin-top: 10px;
-}
-/*Sign Up css*/
-.signup-box {
-    background-color: #fff;
-    border-radius: 8px;
+
+.branch-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     max-width: 400px; 
     margin: 50px auto; 
-    }
-    .signup-box input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    }
-    .signup-box button {
-    background-color: #333;
+}
+/*Products*/
+
+.product-section 
+h2 {
+    background-image: url('assets/products/meat1.jfif'); /* Replace with your image path */
+    background-size: cover;
     color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    }
-    .phone-number-wrapper {
-        display: flex;
-        align-content: center;
-        font-size: small;
-      }
-      
-      .country-code {
-        margin: 8px; 
-      }
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    margin-bottom: 20px; /* Add margin for spacing between categories */
+    position: relative;
+    
+}
+
+.product-images {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: #fff;
+    margin-top: 20px; 
+    
+}
+
+.product-images img {
+    width: 150px;
+    margin-bottom: 10px;
+}
