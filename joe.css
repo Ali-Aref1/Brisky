@@ -18,6 +18,9 @@ body{
     border: 2px solid #4B0000;
     height:175px;
     border-radius: 20px;
+    margin-left:auto;
+    margin-right:auto;
+    width:80%;
 }
 .pagebutton{
     border: 2px solid #4B0000;
