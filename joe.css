@@ -124,3 +124,8 @@ body{
         width: 50px; 
         height: auto; 
     }
+    .date-wrapper {
+        display: flex;
+        align-content: center;
+        font-size: small;
+      }

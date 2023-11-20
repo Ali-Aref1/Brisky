@@ -91,6 +91,11 @@ h2{
   .country-code {
     margin: 10px; 
   }
+  .date-wrapper {
+    display: flex;
+    align-content: center;
+    font-size: small;
+  }
   hr{background-color: #c2c2c2;
     height:1px;
     width:90%;
