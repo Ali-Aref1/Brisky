@@ -1,0 +1,150 @@
+<head>
+    <link rel="stylesheet" href="hazem.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brisky - Item</title>
+</head>
+<body>
+    <style>
+        body{
+    background-color: #1F1F1F;
+    font-family: Helvetica, Arial, sans-serif;
+    background-image: url(assets/items.jpg);
+    background-size:cover;
+    
+    
+    
+}
+.topbar{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5B0000;
+    border: 2px solid #4B0000;
+    height:175px;
+    border-radius: 20px;
+    margin-left:auto;
+    margin-right:auto;
+    width:80%;
+}
+.pagebutton{
+    border: 2px solid #4B0000;
+    height:40px;
+    width:300px;
+    border-radius:12px;
+    background-color: #840000;
+    color:#C0C0C0;
+    font-weight:bold;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.pagebutton:hover {
+    background-color: #6A0000;
+    color: #C0C0C0;
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.7); 
+    width: 400px; 
+    height: 300px; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin: 20px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+  
+
+}
+
+.item-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #141313;
+}
+
+.product-details {
+    text-align: center;
+}
+
+.product-image {
+    width: 200px; 
+}
+
+.review-stars {
+    color: #FFD700; 
+    font-size: 44px; 
+} 
+.addtocart{
+    
+    border:none !important;
+    text-align: left;
+    margin-left:auto;
+    margin-right: auto;
+}
+.cartbutton{
+    background-color: #840000;
+    width:50px;
+    height:50px;
+    border-radius: 20;
+    border-radius:15px;
+    border:none;
+    text-align: center;
+    margin-left:auto;
+    margin-right: auto;
+    display:flex;
+}
+.cartbutton:hover{
+    background-color: #ff0e0e;
+    filter: drop-shadow(0px 0px 4px #ff0e0e);
+    margin-left:auto;
+    margin-right: auto;
+    
+} 
+    </style>
+
+    <!-- Top bar (Don't edit!!) -->
+    <div class="topbar">
+        <button onclick="location.href='account.html'" class="pagebutton"><p>Account</p></button>
+        <button onclick="location.href='Branch.html'" class="pagebutton"><p>Orders</p></button>
+        <a href="index.html"><img src="assets/logo.png" width="150"></a>
+        <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
+        <button onclick="location.href='SignUp.html'" class="pagebutton"><p>Sign Up</p></button>
+    </div>
+     <!-- End Top bar -->
+    <div class="container">
+        <div class="item-content">
+            <div class="product-details">
+                <img src="assets/products/Product1.jpg" alt="Product 1" class="product-image">
+                <h2>Product name: Meat</h2>
+                <p>Price: 100EGP</p>
+                <div class="review-stars">
+                
+                    ★★★★★
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button onclick="addToCart()" class="cartbutton"><img src="assets/add-to-cart.png" style="width:99%">
+</div>
+<script>
+    function addToCart() {
+      
+        window.location.href = "chekout.html";
+    }
+</script>
+
+</body>
+</html>
+   

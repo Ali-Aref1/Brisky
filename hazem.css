@@ -4,16 +4,10 @@ body{
     background-color: #1F1F1F;
     font-family: Helvetica, Arial, sans-serif;
     background-image: url(assets/wallpaper.png);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
-    
     background-size:cover;
     
+    
 }
-
 .topbar{
     display:flex;
     justify-content: center;
@@ -22,6 +16,9 @@ body{
     border: 2px solid #4B0000;
     height:175px;
     border-radius: 20px;
+    margin-left:auto;
+    margin-right:auto;
+    width:80%;
 }
 .pagebutton{
     border: 2px solid #4B0000;
@@ -36,18 +33,11 @@ body{
     justify-content: center;
     text-align: center;
 }
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 150px;
-}
 .pagebutton:hover {
     background-color: #6A0000;
     color: #C0C0C0;
 }
+
 
 /*Branch CSS*/
 .Branch {
@@ -68,34 +58,171 @@ body{
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 400px; 
-    margin: 50px auto; 
+    text-align: center;
+    width: 500px;
+    position:relative ;
+    margin:auto;
+    z-index: 1;
+}
+
+.branch-list {
+    list-style: none;
+    padding: 0;
+}
+
+.branch-list-item {
+    margin: 10px 0;
+    cursor: pointer;
+    color: #5B0000;
+    transition: color 0.3s;
+    border-radius: 10px;
+    padding: 100px;
+    background-color: #fff;
+}
+
+.branch-list-item:hover {
+    color: #fff;
+    background-color: #5B0000;
+    
+}
+
+.browse-button {
+    background-color: #5B0000;
+    color: #fff;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.browse-button:hover {
+    background-color: #3A0000;
+}
+
+.branch-select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    border: 1px solid #5B0000;
+    border-radius: 10px;
+    transition: border-color 0.3s;
+}
+
+.branch-select:hover,
+.branch-select:focus {
+    border-color: #3A0000;
 }
 /*Products*/
+body, h1, p, ul {
+    margin: 0;
+    padding: 0;
+}
 
-.product-section 
-h2 {
-    background-image: url('assets/products/meat1.jfif'); /* Replace with your image path */
-    background-size: cover;
+.product-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-images .all-products {
+    display: none;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    background-color: #5B0000;
     color: #fff;
-    padding: 20px; /* Add padding for spacing */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    margin-bottom: 20px; /* Add margin for spacing between categories */
-    position: relative;
-    
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.category-buttons:hover {
+    background-color: #6A0000;
+}
+
+.category-buttons:not(:last-child) {
+    border-right: 3px solid #4B0000; /* Adjusted color to match the top bar */
+}
+
+.category-buttons:not(:first-child) {
+    margin-left: 0; /* Remove left margin for the first button */
+}
+
+.category-buttons button {
+    background-color: #5B0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    border: none;
+    margin-top: 50px;
+    border-radius: 5px 0 0 5px;
+    width: 300px;
+}
+
+.search-bar button {
+    background-color: #5B0000;
+    color: #fff;
+    border: none;
+    margin-top: auto;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 .product-images {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
-    color: #fff;
-    margin-top: 20px; 
-    
 }
 
 .product-images img {
-    width: 150px;
-    margin-bottom: 10px;
+    width: 250px;
+    margin-bottom: 10px; /* Adds space below each image */
+    margin-right: 50px; /* Adds space to the right of each image */
+    color: #fff;
+    font-weight: bold;
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+    border: 2px solid #f5eeee;
 }
+
+
+.product-images img:hover {
+    transform: scale(2.2); /* Increase the scale factor to make it larger */
+}
+
+.all-products {
+    display: none;
+}
+
+.product {
+    width: 150px;
+    margin: 10px;
+    /* Remove the "display: none" here */
+}
+
+#showAllProducts:checked ~ .product-images .all-products,
+#showAllProducts:not(:checked) ~ .product-images .product {
+    display: block;
+}
+
+/* item.css */
+ 
