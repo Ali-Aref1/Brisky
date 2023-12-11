@@ -35,7 +35,3 @@ class Vegetable {
 
 const apple = new Fruit("Apple", 2.5, "apple.jpg", "2023-01-15");
 const carrot = new Vegetable("Carrot", 1.2, "carrot.jpg", "2023-01-20");
-
-apple.displayInfo();
-console.log("---------------------");
-carrot.displayInfo();

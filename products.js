@@ -85,7 +85,7 @@ class CannedGood {
 const wholeWheatBread = new Bread(
   "Whole Wheat Bread",
   3.0,
-  "whole_wheat_bread.jpg",
+  "assets/products/Product5.jpg",
   "2023-01-10"
 );
 const beef = new Meat(
@@ -97,13 +97,13 @@ const beef = new Meat(
 const cannedBeans = new CannedGood(
   "Canned Beans",
   1.8,
-  "canned_beans.jpg",
+  "assets/products/Product6.jpg",
   "2023-02-28"
 );
 const apple = new Fruit(
   "Apple",
   2.5,
-  "assetsassets/products/apple.jpg",
+  "assets/products/apple.jpg",
   "2023-01-15"
 );
 const tommato = new Fruit(
@@ -118,3 +118,48 @@ const carrot = new Vegetable(
   "assets/products/carrots.jpg",
   "2023-01-20"
 );
+
+/// now lets try to modify the Products web page made by hazem （。＾▽＾）
+
+const products = [wholeWheatBread, beef, cannedBeans, apple, tommato, carrot];
+
+function displayProducts() {
+  var productImages = document.getElementById("productImages");
+
+  productImages.innerHTML = "";
+
+  //  now create a new div for each product be carful
+
+  products.forEach(function (product) {
+    var productDiv = document.createElement("div");
+    productDiv.className = "product";
+
+    var productLink = document.createElement("a");
+    productLink.href = "Item.html";
+
+    var productImage = document.createElement("img");
+    productImage.src = product.picture;
+    productImage.alt = product.name;
+
+    // appending each one on the other looks the same on the html ＜（＾－＾）＞
+
+    productLink.appendChild(productImage);
+    productDiv.appendChild(productLink);
+    productImages.appendChild(productDiv);
+  });
+}
+
+// lets call this function to try it
+displayProducts();
+
+// this is 7azoo function he put it at end of the html page and fff (*￣3￣)╭ its just moved
+
+function showAllProducts() {
+  // Show all products
+  var productImages = document.getElementById("productImages");
+  productImages.style.display = "flex";
+}
+
+// soo its working right now because the problem i was loading it before the html page but after putting the
+// java script file in the end it works for now e need to make it looks better also adjust the page of the item.htnml
+// also the horizental list
