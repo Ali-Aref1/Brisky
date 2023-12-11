@@ -119,6 +119,8 @@ const carrot = new Vegetable(
   "2023-01-20"
 );
 
+//-----------------------------------------------------------------------------------//
+
 /// now lets try to modify the Products web page made by hazem （。＾▽＾）
 
 const products = [wholeWheatBread, beef, cannedBeans, apple, tommato, carrot];
@@ -136,6 +138,10 @@ function displayProducts() {
 
     var productLink = document.createElement("a");
     productLink.href = "Item.html";
+    productLink.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent the default navigation behavior
+      openItemPage(product);
+    });
 
     var productImage = document.createElement("img");
     productImage.src = product.picture;
@@ -163,3 +169,37 @@ function showAllProducts() {
 // soo its working right now because the problem i was loading it before the html page but after putting the
 // java script file in the end it works for now e need to make it looks better also adjust the page of the item.htnml
 // also the horizental list
+
+// now for the item.html page
+//(*￣3￣)╭(*￣3￣)╭－O－☆⌒(*＾-゜)v(￣o￣) . z Zヾ(^▽^*)))*_*=_=-0-:-*>.<^^Y.YY.YY.Y;D
+
+function displayProductDetails(selectedProduct) {
+  var productDetailsContainer = document.getElementById(
+    "productDetailsContainer"
+  );
+
+  if (productDetailsContainer && selectedProduct) {
+    productDetailsContainer.innerHTML = `
+            <img src="${selectedProduct.picture}" alt="${
+      selectedProduct.name
+    }" class="product-image">
+            <h2>Product name: ${selectedProduct.name}</h2>
+            <p>Price: $${selectedProduct.price.toFixed(2)}</p>
+            <p>Expiry Date: ${selectedProduct.expiryDate}</p>
+            <!-- Add other product properties as needed -->
+            <div class="review-stars">
+                ★★★★★
+            </div>
+        `;
+  }
+}
+
+function openItemPage(selectedProduct) {
+  sessionStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
+  window.location.href = "item.html";
+}
+
+// now it works well with item.html page its now visible to be dynamic we only need to adjust the look and go all the way to the cart
+// （￣︶￣）↗　（￣︶￣）↗　（￣︶￣）↗　（￣︶￣）↗　（￣︶￣）↗　（￣︶￣）↗
+
+//--------------------------------------------------------------------------------------------------------------------------//

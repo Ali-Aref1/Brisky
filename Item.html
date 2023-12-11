@@ -119,13 +119,15 @@
         <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
         <button onclick="location.href='SignUp.html'" class="pagebutton"><p>Sign Up</p></button>
     </div>
+
      <!-- End Top bar -->
     <div class="container">
         <div class="item-content">
-            <div class="product-details">
+            <div class="product-details"  id="productDetailsContainer">
                 <img src="assets/products/Product1.jpg" alt="Product 1" class="product-image">
                 <h2>Product name: Meat</h2>
                 <p>Price: 100EGP</p>
+                <p>Expiry Date: 2023-01-05</p>
                 <div class="review-stars">
                 
                     ★★★★★
@@ -138,13 +140,24 @@
 
 <button onclick="addToCart()" class="cartbutton"><img src="assets/add-to-cart.png" style="width:99%">
 </div>
+
+
+
+<script src="products.js"></script>
+
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var storedProduct = sessionStorage.getItem('selectedProduct');
+        var selectedProduct = storedProduct ? JSON.parse(storedProduct) : null;
+
+        // Display product details
+        displayProductDetails(selectedProduct);
+    });
+
     function addToCart() {
-      
-        window.location.href = "chekout.html";
+        window.location.href = 'checkout.html';
     }
 </script>
-
 </body>
 </html>
    
