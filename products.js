@@ -203,3 +203,71 @@ function openItemPage(selectedProduct) {
 // （￣︶￣）↗　（￣︶￣）↗　（￣︶￣）↗　（￣︶￣）↗　（￣︶￣）↗　（￣︶￣）↗
 
 //--------------------------------------------------------------------------------------------------------------------------//
+
+//lets start to check out
+
+// function to dispalty whay is on cart
+
+function catchselected() {
+  var storedProduct = sessionStorage.getItem("selectedProduct");
+  var selectedProduct = storedProduct ? JSON.parse(storedProduct) : null;
+  return selectedProduct;
+}
+/*
+function addToCart() {
+  var selectedProduct = catchselected();
+  sessionStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
+
+  window.location.href = "checkout.html";
+}
+*/
+
+function addToCart() {
+  var selectedProduct = catchselected();
+  var cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+  cart.push(selectedProduct);
+
+  sessionStorage.setItem("cart", JSON.stringify(cart));
+
+  window.location.href = "checkout.html";
+}
+
+function displayCartItems() {
+  var cartContainer = document.getElementById("cartContainer");
+  var totalPriceElement = document.getElementById("totalPrice");
+
+  var cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+
+  cartContainer.innerHTML = "";
+
+  cart.forEach(function (product) {
+    var productDiv = document.createElement("div");
+    productDiv.className = "cart-item";
+
+    // Create elements to display product information
+    var productName = document.createElement("h4");
+    productName.textContent = product.name;
+
+    var productPrice = document.createElement("p");
+    productPrice.textContent = `Price: $${product.price.toFixed(2)}`;
+
+    // Append elements to productDiv
+    productDiv.appendChild(productName);
+    productDiv.appendChild(productPrice);
+
+    cartContainer.appendChild(productDiv);
+  });
+
+  // Calculate and update the total price
+  var totalPrice = calculateTotalPrice(cart);
+  totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+}
+
+function calculateTotalPrice(cart) {
+  var totalPrice = cart.reduce((total, product) => total + product.price, 0);
+  return totalPrice;
+}
+
+// now we opend the checkout page
+
+///oof thanls god it works well fot now but nedd so,e modification

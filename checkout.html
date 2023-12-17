@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GreenMarket - Checkout</title>
     <link rel="stylesheet" href="styleee.css" />
-    <script src="chckout.js"></script>
   </head>
 
   <body>
@@ -54,6 +53,10 @@
         </div>
       </div>
 
+      <div id="cartContainer" class="section">
+        <!-- Cart items will be displayed here -->
+      </div>
+
       <div class="total-section">
         <h3>Total Price</h3>
         <p id="totalPrice">$0.00</p>
@@ -64,7 +67,13 @@
       </button>
     </main>
 
+    <script src="products.js"></script>
+
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        displayCartItems();
+      });
+
       function openPaymentPage() {
         window.open("payment.html", "_blank");
       }
