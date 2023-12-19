@@ -54,7 +54,17 @@
       </div>
 
       <div id="cartContainer" class="section">
-        <!-- Cart items will be displayed here -->
+        <!-- made this container for the fruits section -->
+      </div>
+
+      <div id="cartContainerFruit" class="section">
+        <!-- made this container for the fruits section -->
+        <h3>Fruits</h3>
+      </div>
+
+      <div id="cartContainerVegetables" class="section">
+        <!-- made this container for the vegetables section section -->
+        <h3>Vegetables</h3>
       </div>
 
       <div class="total-section">
@@ -77,22 +87,6 @@
       function openPaymentPage() {
         window.open("payment.html", "_blank");
       }
-
-      function calculateTotal() {
-        const carrotPrice = 1.99;
-        const broccoliPrice = 2.49;
-        const tomatoPrice = 0.99;
-        const applePrice = 1.49;
-
-        const totalPrice =
-          carrotPrice + broccoliPrice + tomatoPrice + applePrice;
-
-        document.getElementById(
-          "totalPrice"
-        ).textContent = `$${totalPrice.toFixed(2)}`;
-      }
-
-      calculateTotal();
     </script>
   </body>
 </html>

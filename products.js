@@ -1,11 +1,12 @@
 // we gona make this js to make classes for the products in nutshell (⊙_⊙;)
 
 class Fruit {
-  constructor(name, price, picture, expiryDate) {
+  constructor(name, price, picture, expiryDate, className1) {
     this.name = name;
     this.price = price;
     this.picture = picture;
     this.expiryDate = expiryDate;
+    this.className1 = "Fruit";
   }
 
   displayInfo() {
@@ -17,11 +18,12 @@ class Fruit {
 }
 
 class Vegetable {
-  constructor(name, price, picture, expiryDate) {
+  constructor(name, price, picture, expiryDate, className1) {
     this.name = name;
     this.price = price;
     this.picture = picture;
     this.expiryDate = expiryDate;
+    this.className1 = "Vegetable";
   }
 
   displayInfo() {
@@ -33,11 +35,12 @@ class Vegetable {
 }
 
 class Bread {
-  constructor(name, price, picture, expiryDate) {
+  constructor(name, price, picture, expiryDate, className1) {
     this.name = name;
     this.price = price;
     this.picture = picture;
     this.expiryDate = expiryDate;
+    this.className1 = "Bread";
   }
 
   displayInfo() {
@@ -49,11 +52,12 @@ class Bread {
 }
 
 class Meat {
-  constructor(name, price, picture, expiryDate) {
+  constructor(name, price, picture, expiryDate, className1) {
     this.name = name;
     this.price = price;
     this.picture = picture;
     this.expiryDate = expiryDate;
+    this.className1 = "Meat";
   }
 
   displayInfo() {
@@ -232,30 +236,49 @@ function addToCart() {
   window.location.href = "checkout.html";
 }
 
+//inhancment for this function because right now we have multiple types of products
+
 function displayCartItems() {
-  var cartContainer = document.getElementById("cartContainer");
+  var cartContainerF = document.getElementById("cartContainerFruit");
+  var cartContainerV = document.getElementById("cartContainerVegetables");
+
   var totalPriceElement = document.getElementById("totalPrice");
 
   var cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
   cartContainer.innerHTML = "";
+  cartContainerF.innerHTML = "";
+  cartContainerV.innerHTML = "";
+
+  var productGroups = {};
+
+  // counter for the rows to make the rows count 2 elements on it
 
   cart.forEach(function (product) {
     var productDiv = document.createElement("div");
-    productDiv.className = "cart-item";
+    productDiv.className = "item";
 
-    // Create elements to display product information
+    // Create all the elements of the htm;
+
+    var productImage = document.createElement("img");
+    productImage.src = product.picture;
+
     var productName = document.createElement("h4");
     productName.textContent = product.name;
+    var line = document.createElement("hr");
+    productName.appendChild(line);
 
     var productPrice = document.createElement("p");
     productPrice.textContent = `Price: $${product.price.toFixed(2)}`;
 
     // Append elements to productDiv
+    productDiv.appendChild(productImage);
     productDiv.appendChild(productName);
     productDiv.appendChild(productPrice);
 
-    cartContainer.appendChild(productDiv);
+    if (product.className1 == "Fruit") cartContainerF.appendChild(productDiv);
+    else if (product.className1 == "Vegetable")
+      cartContainerV.appendChild(productDiv);
   });
 
   // Calculate and update the total price
