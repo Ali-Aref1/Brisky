@@ -236,9 +236,93 @@ function addToCart() {
   window.location.href = "checkout.html";
 }
 
+//-----------------------------------------------------------------------------------------------------//
+//-----------------------------------------------------------------------------------------------//
+function displayCartItems() {
+  var cartContainer = document.getElementById("cartContainer");
+  var totalPriceElement = document.getElementById("totalPrice");
+
+  var cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+
+  cartContainer.innerHTML = "";
+
+  var productGroups = {}; // Separate products into groups based on class
+
+  cart.forEach(function (product) {
+    if (!productGroups[product.className1]) {
+      productGroups[product.className1] = [];
+    }
+    productGroups[product.className1].push(product);
+  });
+
+  for (var productClass in productGroups) {
+    var productGroup = productGroups[productClass];
+
+    // Create a new section for each product class
+    var sectionDiv = document.createElement("div");
+    sectionDiv.className = "section";
+    cartContainer.appendChild(sectionDiv);
+
+    // Create a header for the section with the class name
+    var header = document.createElement("h3");
+    header.textContent = productClass;
+    sectionDiv.appendChild(header);
+
+    // Create a new row for each product class
+    var rowDiv = document.createElement("div");
+    rowDiv.className = "item-row";
+    sectionDiv.appendChild(rowDiv);
+
+    var productsInCurrentRow = 0;
+
+    // Populate the row with products of the same class
+    productGroup.forEach(function (product) {
+      var productDiv = document.createElement("div");
+      productDiv.className = "item";
+
+      // Create all the elements of the HTML
+      var productImage = document.createElement("img");
+      productImage.src = product.picture;
+
+      var productName = document.createElement("h4");
+      productName.textContent = product.name;
+      var line = document.createElement("hr");
+      productName.appendChild(line);
+
+      var productPrice = document.createElement("p");
+      productPrice.textContent = `Price: $${product.price.toFixed(2)}`;
+
+      // Append elements to productDiv
+      productDiv.appendChild(productImage);
+      productDiv.appendChild(productName);
+      productDiv.appendChild(productPrice);
+
+      // Append productDiv to the current row
+      rowDiv.appendChild(productDiv);
+
+      // Increment the count of products in the current row
+      productsInCurrentRow++;
+
+      // If two products are already added to the row, create a new row
+      if (productsInCurrentRow === 2) {
+        rowDiv = document.createElement("div");
+        rowDiv.className = "item-row";
+        sectionDiv.appendChild(rowDiv);
+        productsInCurrentRow = 0;
+      }
+    });
+  }
+  // Calculate and update the total price
+  var totalPrice = calculateTotalPrice(cart);
+  totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+}
+
+//----------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------------//
+
 //inhancment for this function because right now we have multiple types of products
 
-function displayCartItems() {
+function displayCartItems_old_only_fruit_and_Vegetable() {
   var cartContainerF = document.getElementById("cartContainerFruit");
   var cartContainerV = document.getElementById("cartContainerVegetables");
 
@@ -285,6 +369,8 @@ function displayCartItems() {
   var totalPrice = calculateTotalPrice(cart);
   totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
 }
+//------->><<<>>><<<1111111111111111111111111111--->>>>>>>//
+//we are not using the above function iam keeping it we will need it to add more products
 
 function calculateTotalPrice(cart) {
   var totalPrice = cart.reduce((total, product) => total + product.price, 0);
@@ -294,3 +380,6 @@ function calculateTotalPrice(cart) {
 // now we opend the checkout page
 
 ///oof thanls god it works well fot now but nedd so,e modification
+
+/// right now we could say we are oifficaly done with the checkout
+//     ------------------------iam gonnd keep this file for this onlt and add other one for the payment method ;;
