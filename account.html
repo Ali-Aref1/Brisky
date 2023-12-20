@@ -26,7 +26,7 @@
                     <input type="text" placeholder="Last Name" name="last_name" required pattern="[A-Z][a-z]*"></div>
                 
                 
-                <input type="email" placeholder="E-mail" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
+                <input type="email" placeholder="E-mail" name="email" required pattern="[a-zA-Z0-9._\%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
                
                 <div class="phone-number-wrapper">
                     <span class="country-code">+20</span>
@@ -44,17 +44,78 @@
             </form>
         </div>
         <div class="mainBox">
-            <h2>Payment Methods</h2>
-            <table class="paymentMethods">
-                <tr>
-                    </th><th>Name</th><th>Number</th><th>Expiry Date</th>
-                </tr>
-                <tr>
-                    <td class="nameCell"><img src="assets/credit-card.png" style="width:50px;vertical-align: middle; margin-right: 5px;">Placeholder Card</td><td>1234567890</td><td>11/24</td><td style="border:none !important;"><button class="deleteButton"><img src="assets/trash-can.png" width="80%"></button></td>
-                </tr>
+            <h2>Address Book</h2>
+            <table id="addressBook">
+
             </table>
-            <button type="button" class="plusButton"><img src="assets/plus.png" style="width:80%"></button>
+            <button type="button" id="addAddress" class="plusButton"><img src="assets/plus.png" style="width:80%"></button>
+        </div>
+        <div class="mainBox">
+            <h2>Payment Methods</h2>
+            <table id="paymentMethods">
+                
+            </table>
+            <button type="button" id="addPMethod" class="plusButton"><img src="assets/plus.png" style="width:80%"></button>
         </div>
     </div>
+    <div id="modal">
+        <div class="mainBox" id="modalDiv1" style="width:60%">
+            <h2 id="modalText">Add Payment Method</h2>
+            <form id="pMethodForm" name="pMethodForm">
+                <div>
+                    <label for="cardName">Card Name:</label>
+                    <input type="text" id="cardName" name="cardName"  pattern="[a-zA-Z0-9._%+-]{1,20}" maxlength="20" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Name is required.')">
+                </div>
+                <div>
+                    <label for="cardNum">Card Number:</label>
+                    <input type="tel" id="cardNum" name="cardNum" pattern="[0-9]{16}" maxlength="16" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter a valid 16-digit card number.')">
+                </div>
+                <div>
+                    <label for="cardExp1">Expiry Date:</label>
+                    <input type="text" id="cardExp1" name="expMonth" pattern="^(0?[1-9]|1[0-2])$" required style="width:40px;" maxlength="2" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter a valid month.')">
+                    / 20
+                    <input type="text" id="cardExp2" name="expYear" pattern="[0-9]{2}" required style="width:40px;" maxlength="2" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter a valid year.')">
+                </div>
+                <div>
+                    <label for="cvv">CVV:</label>
+                    <input type="tel" id="cvv" name="cvv" pattern="[0-9]{3}" maxlength="3" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter a valid 3-digit CVV.')">
+                </div>
+                    
+                    
+                    
+                    <div class="buttons">
+                        <input type="submit" value="Save"></input>
+                        <input type="cancel" value="Cancel" class="cancelbutton"></input>
+                    </div>
+            </form>
+            <form id="addressForm" name="addressForm">
+                <div>
+                    <label for="line1">Line 1:</label>
+                    <input type="text" id="line1" name="line1"  pattern="[a-zA-Z0-9._+-]{1,20}" maxlength="20" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('This field is required.')">
+                </div>
+                <div>
+                    <label for="line2">Line 2:</label>
+                    <input type="text" id="line2" name="line2"  pattern="[a-zA-Z0-9._+-]{1,20}" maxlength="20" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('This field is required.')">
+                </div>
+                <div>
+                    <label for="region">Region:</label>
+                    <input type="text" id="region" name="region"  pattern="[a-zA-Z0-9._+-]{1,20}" maxlength="20" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('This field is required.')">
+                </div>
+                
+                <div>
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" pattern="[a-zA-Z0-9._+-]{1,20}" maxlength="30" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('This field is required.')">
+                </div>
+                    
+                    
+                    
+                    <div class="buttons">
+                        <input type="submit" value="Save"></input>
+                        <input type="cancel" value="Cancel" class="cancelbutton"></input>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <script src="account.js"></script>
 </body>
 </html>
