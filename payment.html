@@ -7,22 +7,30 @@
     <link rel="stylesheet" href="styleee.css" />
   </head>
   <body>
-    <div class="iframe-container">
-      <iframe
-        src="index.html"
-        width="100%"
-        height="200"
-        frameborder="0"
-      ></iframe>
+    <!-- Top bar (Don't edit!!) -->
+    <div class="topbar">
+      <button onclick="location.href='account.html'" class="pagebutton">
+        <p>Account</p>
+      </button>
+      <button onclick="location.href='Branch.html'" class="pagebutton">
+        <p>Orders</p>
+      </button>
+      <a href="index.html"><img src="assets/logo.png" width="150" /></a>
+      <button onclick="location.href='Login.html'" class="pagebutton">
+        <p>Login</p>
+      </button>
+      <button onclick="location.href='SignUp.html'" class="pagebutton">
+        <p>Sign Up</p>
+      </button>
     </div>
-    <header>
-      <h1>Green is Brisky</h1>
-    </header>
+    <!-- End Top bar -->
 
     <main>
       <h2>Proceed to Checkout</h2>
 
-      <p>paragraph to write the whole amount and so on 👌</p>
+      <p id="totalPriceDisplay">
+        paragraph to write the whole amount and so on 👌
+      </p>
 
       <form onsubmit="return validateForm()">
         <label for="paymentMethod">Select Payment Method:</label>

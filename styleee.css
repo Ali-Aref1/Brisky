@@ -295,3 +295,29 @@ textarea#address:focus {
   color: #fff;
   border-radius: 5px;
 }
+
+.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5b0000;
+  border: 2px solid #4b0000;
+  height: 175px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+.pagebutton {
+  border: 2px solid #4b0000;
+  height: 40px;
+  width: 300px;
+  border-radius: 12px;
+  background-color: #840000;
+  color: #c0c0c0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
