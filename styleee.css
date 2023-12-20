@@ -149,7 +149,8 @@ form input {
   border-radius: 5px;
 }
 
-#creditCardDetails {
+#creditCardDetails,
+#depitCardDetails {
   display: none;
 }
 

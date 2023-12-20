@@ -8,13 +8,13 @@
   </head>
   <body>
     <div class="iframe-container">
-        <iframe
-          src="index.html"
-          width="100%"
-          height="200"
-          frameborder="0"
-        ></iframe>
-      </div>
+      <iframe
+        src="index.html"
+        width="100%"
+        height="200"
+        frameborder="0"
+      ></iframe>
+    </div>
     <header>
       <h1>Green is Brisky</h1>
     </header>
@@ -22,11 +22,9 @@
     <main>
       <h2>Proceed to Checkout</h2>
 
-      <p>
-        paragraph to write the whole amount and so on 👌
-      </p>
+      <p>paragraph to write the whole amount and so on 👌</p>
 
-      <form>
+      <form onsubmit="return validateForm()">
         <label for="paymentMethod">Select Payment Method:</label>
         <select id="paymentMethod" name="paymentMethod">
           <option value="cash">Cash</option>
@@ -35,108 +33,69 @@
         </select>
 
         <div id="creditCardDetails" style="display: none">
-        <br></form>
           <label for="creditCardNumber">Credit Card Number:</label>
           <input type="text" id="creditCardNumber" name="creditCardNumber" />
 
-          <label for="expirationDate">Expiration Date:</label>
-          <input type="text" id="expirationDate" name="expirationDate" />
-
-
+          <label for="expirationDateC">Expiration Date:</label>
+          <input type="text" id="expirationDateC" name="expirationDateC" />
         </div>
-        <br></form>
-      
-        
+
+        <div id="depitCardDetails" style="display: none">
+          <label for="depitCardNumber">Debit Card Number:</label>
+          <input type="text" id="depitCardNumber" name="depitCardNumber" />
+
+          <label for="expirationDateD">Expiration Date:</label>
+          <input type="text" id="expirationDateD" name="expirationDateD" />
+        </div>
 
         <label for="address">Delivery Address:</label>
 
         <label for="addressLine1">Address Line 1:</label>
-        <textarea id="address" name="address"></textarea>
-    
+        <textarea id="addressLine1" name="addressLine1" required></textarea>
+
         <label for="addressLine2">Address Line 2:</label>
-        <textarea id="address" name="address"></textarea>
-    
+        <textarea id="addressLine2" name="addressLine2"></textarea>
+
         <label for="zipCode">ZIP Code:</label>
-        <input type="text" id="zipCode" name="zipCode" class="address" />
-    
+        <input
+          type="text"
+          id="zipCode"
+          name="zipCode"
+          class="address"
+          required
+        />
+
         <label for="city">City:</label>
-        <input type="text" id="city" name="city" class="address" />
-
-        <br></form>
-
-        <br></form>
+        <input type="text" id="city" name="city" class="address" required />
 
         <div class="delivery-options">
+          <label for="deliveryOption">Select Delivery Option:</label>
+          <br />
+          <br />
 
-            <label for="deliveryOption">Select Delivery Option:</label>
-            <br></form>
-            <input
-                type="radio"
-                id="normalDelivery"
-                name="deliveryOption"
-                value="normal"
-                checked
-             />
-            <label for="normalDelivery">Normal Delivery</label>
-             <input
-               type="radio"
-               id="premiumDelivery"
-               name="deliveryOption"
-               value="premium"
-             />
-             <label for="premiumDelivery">Premium Delivery (extra cost)</label>
-          </div>
+          <label for="normalDelivery">Normal Delivery</label>
+          <input
+            type="radio"
+            id="normalDelivery"
+            name="deliveryOption"
+            value="normal"
+            checked
+          />
+          <label for="premiumDelivery">Premium Delivery (extra cost)</label>
 
-        <br></form>
-        <br></form>
-        <br></form>
+          <input
+            type="radio"
+            id="premiumDelivery"
+            name="deliveryOption"
+            value="premium"
+          />
+        </div>
 
-        <button onclick="BUY()">Checkout</button>
+        <br />
       </form>
+      <button type="button" onclick="BUY()">Checkout</button>
     </main>
 
-    <script>
-      function BUY() {
-        // Get selected payment method
-        const paymentMethod = document.getElementById("paymentMethod").value;
-
-        // Get credit card details (if applicable)
-        const creditCardNumber =
-          document.getElementById("creditCardNumber").value;
-        const expirationDate = document.getElementById("expirationDate").value;
-
-        // Get delivery information
-        const address = document.getElementById("address").value;
-        const deliveryOption = document.querySelector(
-          'input[name="deliveryOption"]:checked'
-        ).value;
-
-        // In a real-world scenario, you would process this information accordingly.
-        // For this example, let's log the details to the console.
-        console.log("Payment Method:", paymentMethod);
-        if (paymentMethod === "creditCard") {
-          console.log("Credit Card Number:", creditCardNumber);
-          console.log("Expiration Date:", expirationDate);
-        }
-        console.log("Delivery Address:", address);
-        console.log("Delivery Option:", deliveryOption);
-
-        // For demonstration purposes, open a new page
-        window.open("confirmation.html", "_blank");
-      }
-
-      // Show/hide credit card details based on the selected payment method
-      document
-        .getElementById("paymentMethod")
-        .addEventListener("change", function () {
-          const creditCardDetails =
-            document.getElementById("creditCardDetails");
-          if (this.value === "creditCard") {
-            creditCardDetails.style.display = "block";
-          } else {
-            creditCardDetails.style.display = "none";
-          }
-        });
-    </script>
+    <script src="payment.js"></script>
   </body>
 </html>
