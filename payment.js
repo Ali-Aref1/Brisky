@@ -1,3 +1,18 @@
+//// want to write the data like the total pri ce`(*>﹏<*)′
+document.addEventListener("DOMContentLoaded", function () {
+  var totalPrice = sessionStorage.getItem("totalPrice");
+  console.log("sessionStorage", totalPrice);
+
+  var totalPriceElement = document.getElementById("totalPriceDisplay");
+  if (totalPrice !== null) {
+    console.log("sessionStorage:", totalPrice);
+    totalPriceElement.textContent = "the total price is : " + totalPrice;
+  } else {
+    console.log("Total price not found in the URL.");
+  }
+});
+
+// buy method (❁´◡`❁)
 function BUY() {
   if (!validateForm()) {
     return; // Exit if validation fails

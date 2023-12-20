@@ -314,6 +314,7 @@ function displayCartItems() {
   }
   // Calculate and update the total price
   var totalPrice = calculateTotalPrice(cart);
+  sessionStorage.setItem("totalPrice", totalPrice);
   totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
 }
 
@@ -367,6 +368,7 @@ function displayCartItems_old_only_fruit_and_Vegetable() {
 
   // Calculate and update the total price
   var totalPrice = calculateTotalPrice(cart);
+
   totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
 }
 //------->><<<>>><<<1111111111111111111111111111--->>>>>>>//
