@@ -189,12 +189,21 @@ function renderPMethods(){
         t2.style="width:150px"
         t3.style="width:60px"
 
-        const deleteBtn=document.createElement("button")
+        const deleteBtn=document.createElement("button");
         const trashCan= document.createElement("img");
         trashCan.src = "assets/trash-can.png";
-        trashCan.classList.add("trashCan")
+        trashCan.classList.add("trashCan");
         deleteBtn.classList.add("deleteButton");
-        deleteBtn.appendChild(trashCan)
+        deleteBtn.appendChild(trashCan);
+
+        const editBtn=document.createElement("button");
+        const editIcon= document.createElement("img");
+        editIcon.src= "assets/edit.png";
+        editBtn.classList.add("editButton");
+        editIcon.classList.add("editIcon");
+        editBtn.appendChild(editIcon);
+
+        t4.appendChild(editBtn);
         t4.appendChild(deleteBtn)
         
         deleteBtn.addEventListener("click", function() {
@@ -247,7 +256,14 @@ function renderAddressBook(){
         trashCan.src = "assets/trash-can.png";
         trashCan.classList.add("trashCan")
         deleteBtn.classList.add("deleteButton");
-        deleteBtn.appendChild(trashCan)
+        deleteBtn.appendChild(trashCan);
+
+        const editBtn=document.createElement("button");
+        const editIcon= document.createElement("img");
+        editIcon.src= "assets/edit.png";
+        editBtn.classList.add("editButton");
+        editIcon.classList.add("editIcon");
+        editBtn.appendChild(editIcon);
 
         tableRow.appendChild(t1)
         tableRow.appendChild(t2)
@@ -259,7 +275,8 @@ function renderAddressBook(){
         t3.appendChild(s3);
         t4.appendChild(s4);
         t5.classList.add("invisCell")
-        t5.appendChild(deleteBtn)
+        t5.appendChild(editBtn);
+        t5.appendChild(deleteBtn);
         t1.style="width:200px"
         t2.style="width:200px"
         t3.style="width:60px"

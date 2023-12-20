@@ -124,7 +124,7 @@ td{
     gap:10px;
 
 }
-.deleteButton{
+.deleteButton,.editButton{
     border:none;
     background-color: #840000;
     width:50px;
@@ -135,7 +135,7 @@ td{
     margin-left:10px;
     cursor:pointer;
 }
-.deleteButton:hover{
+.deleteButton:hover,.editButton:hover{
     background-color: #ff0e0e;
     filter: drop-shadow(0px 0px 4px #ff0e0e);
 }
@@ -192,12 +192,12 @@ td{
     vertical-align: middle;
     margin-right: 5px;
 }
-.trashCan{
+.trashCan,.editIcon{
     width:80%
 }
 .invisCell{
     border:none !important;
-    width:55px;
+    width:120px;
     display:flex;
     align-items: center;
     justify-content: center;
