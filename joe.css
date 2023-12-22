@@ -119,12 +119,78 @@ body{
         
     }
 
-    .image-container img {
-        width: 50px; 
-        height: auto; 
-    }
-    .date-wrapper {
-        display: flex;
-        align-content: center;
-        font-size: small;
-      }
+.image-container img {
+width: 50px; 
+height: auto; 
+}
+
+.date-wrapper {
+display: flex;
+align-content: center;
+font-size: small;
+}
+      
+/*forget password .css*/
+.forgot-password-box {
+ background-color: #fff;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+padding: 20px;
+max-width: 400px; 
+margin: 50px auto; 
+}
+    
+   
+.forgot-password-box h2 {
+text-align: center;
+color: #333;
+}
+    
+.forgot-password-box p {
+color: #666;
+align-self:center;
+}
+    
+    
+.forgot-password-box form {
+margin-top: 20px;
+}
+    
+   
+.forgot-password-box form input {
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 3px;
+}
+    
+    
+.forgot-password-box form button {
+width: 100%;
+padding: 10px;
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+}
+    
+   
+.forgot-password-box form button:hover {
+background-color: #0056b3;
+}
+    
+    
+.forgot-password-box p a {
+display: block;
+text-align: center;
+margin-top: 20px;
+color: #007bff;
+text-decoration: none;
+}
+    
+    
+.forgot-password-box p a:hover {
+text-decoration: underline;
+}
