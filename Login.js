@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
 
        
-        window.location.href = 'account.html';
+        window.location.href = 'index.html';
     });
 
    
