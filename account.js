@@ -1,14 +1,15 @@
-const pmtable = document.getElementById("paymentMethods");
-const addtable = document.getElementById("addressBook");
+
 var paymentMethods = [];
 var addresses = [];
 var memoryMethods = JSON.parse(localStorage.getItem('paymentMethods')) || [];
 var memoryAddresses = JSON.parse(localStorage.getItem('addresses')) || [];
+var modal;
+var modalText;
+var pMethodForm;
+var addressForm;
+var pmtable;
+var addtable;
 
-const modal= document.getElementById("modal");
-const modalText= document.getElementById("modalText")
-const pMethodForm=document.getElementById('pMethodForm')
-const addressForm=document.getElementById('addressForm')
 var modalFlag=false;
 
 //Dynamic modal, shows for for either new address or new payment method
@@ -37,6 +38,12 @@ function toggleModal(action){
 
 //On DOM load, payment methods and addresses are loaded from memory, and listeners are assigned
 document.addEventListener("DOMContentLoaded",function(){
+    modal= document.getElementById("modal");
+    modalText= document.getElementById("modalText")
+    pMethodForm=document.getElementById('pMethodForm')
+    addressForm=document.getElementById('addressForm')
+    pmtable = document.getElementById("paymentMethods");
+    addtable = document.getElementById("addressBook");
     console.log(paymentMethods);
     memoryMethods.forEach((method)=>{
         new PaymentMethod(method.name,method.num,method.expiryDate,method.cvv);
