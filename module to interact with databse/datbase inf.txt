@@ -1,0 +1,12 @@
+
+
+
+Host: sql11.freesqldatabase.com
+Database name: sql11673787
+Database user: sql11673787
+Database password: KIxY3Uv7ft
+Port number: 3306
+
+connection url for the code :  jdbc:mysql://sql11.freesqldatabase.com:3306/sql11673787?user=sql11673787&password=KIxY3Uv7ft
+
+
