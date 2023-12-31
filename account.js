@@ -71,8 +71,7 @@ document.addEventListener("DOMContentLoaded",function(){
         let expMonth= document.forms["pMethodForm"]["expMonth"].value;
         let expYear= document.forms["pMethodForm"]["expYear"].value;
         let cvv= document.forms["pMethodForm"]["cvv"].value;
-        new PaymentMethod(cardName,cardNum,`${expMonth}/${expYear}`,cvv)
-        savePMethods();
+        addPMethod(new PaymentMethod(cardName,cardNum,`${expMonth}/${expYear}`,cvv));
         toggleModal();
         pMethodForm.reset()
         addressForm.reset();
@@ -116,7 +115,7 @@ class PaymentMethod {
         if (index !== -1) {
             paymentMethods.splice(index, 1);
         }
-        savePMethods();
+        deletePMethod(this);
         delete this;
         
     }
@@ -312,4 +311,33 @@ async function getInfo(e){
     data.forEach((method)=>{
         new PaymentMethod(method.name,method.num,method.expiryDate,method.cvv,method.userID);
     })
+}
+
+async function deletePMethod(method){
+     await fetch("http://localhost:3000/delPMethod",
+        {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({method : method.num})
+        }
+       
+        
+    )
+    console.log("Payment Method deleted!")
+}
+async function addPMethod(method){
+    await fetch("http://localhost:3000/addPMethod",
+       {
+           method: 'POST',
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify({method})
+       }
+       
+       
+   )
+   console.log("Payment Method added!")
 }

@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use("/assets", express.static("assets"));
 app.use(express.static("public"));
+app.use(express.json());
 
 app.listen("3000", () => {
   console.log("server is succesfuly runing on port 3000");
@@ -148,6 +149,25 @@ app.get("/getPMethod", (req, res) => {
     console.log(result);
     const jsonStringt = JSON.stringify(result);
     res.send(jsonStringt);
+  });
+});
+app.post("/delPMethod", (req, res) => {
+  const method = req.body.method;
+  let sql = `DELETE FROM PaymentMethod WHERE num = ${method}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+  });
+    
+});
+app.post("/addPMethod", (req, res) => {
+  const method = req.body.method;
+  let sql = `INSERT INTO PaymentMethod VALUES ("${method.name}", ${method.num}, "${method.expiryDate}", ${method.cvv}, 1)`
+  let query = db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
   });
 });
 
