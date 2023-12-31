@@ -1,7 +1,8 @@
 // we gona make this js to make classes for the products in nutshell (⊙_⊙;)
 
 class Fruit {
-  constructor(name, price, picture, expiryDate, className1) {
+  constructor(ItemID, name, price, picture, expiryDate, className1) {
+    this.ItemID = ItemID;
     this.name = name;
     this.price = price;
     this.picture = picture;
@@ -18,7 +19,8 @@ class Fruit {
 }
 
 class Vegetable {
-  constructor(name, price, picture, expiryDate, className1) {
+  constructor(ItemID, name, price, picture, expiryDate, className1) {
+    this.ItemID = ItemID;
     this.name = name;
     this.price = price;
     this.picture = picture;
@@ -35,7 +37,8 @@ class Vegetable {
 }
 
 class Bread {
-  constructor(name, price, picture, expiryDate, className1) {
+  constructor(ItemID, name, price, picture, expiryDate, className1) {
+    this.ItemID = ItemID;
     this.name = name;
     this.price = price;
     this.picture = picture;
@@ -52,7 +55,8 @@ class Bread {
 }
 
 class Meat {
-  constructor(name, price, picture, expiryDate, className1) {
+  constructor(ItemID, name, price, picture, expiryDate, className1) {
+    this.ItemID = ItemID;
     this.name = name;
     this.price = price;
     this.picture = picture;
@@ -69,7 +73,8 @@ class Meat {
 }
 
 class CannedGood {
-  constructor(name, price, picture, expiryDate) {
+  constructor(ItemID, name, price, picture, expiryDate) {
+    this.ItemID = ItemID;
     this.name = name;
     this.price = price;
     this.picture = picture;
@@ -87,36 +92,42 @@ class CannedGood {
 /// now we gonna do some enstates (sorry for spelling (＠＾０＾) as we was talking to try to list it on the products list of the page
 
 const wholeWheatBread = new Bread(
+  "1",
   "Whole Wheat Bread",
   3.0,
   "assets/products/Product5.jpg",
   "2023-01-10"
 );
 const beef = new Meat(
+  "2",
   "Beef",
   8.5,
   "assets/products/Product3.jpg",
   "2023-01-05"
 );
 const cannedBeans = new CannedGood(
+  "3",
   "Canned Beans",
   1.8,
   "assets/products/Product6.jpg",
   "2023-02-28"
 );
 const apple = new Fruit(
+  "4",
   "Apple",
   2.5,
   "assets/products/apple.jpg",
   "2023-01-15"
 );
 const tommato = new Fruit(
+  "5",
   "tommato",
   2.5,
   "assets/products/tomatoes.jpg",
   "2023-01-15"
 );
 const carrot = new Vegetable(
+  "6",
   "Carrot",
   1.2,
   "assets/products/carrots.jpg",
@@ -136,55 +147,28 @@ async function getInfo(e) {
     method: "GET",
   });
   const data = await res.json();
+
+  // im gonna use mapping better than using 5 if else statmesnts
+  const categoryClassMap = {
+    Fruit: Fruit,
+    Vegetable: Vegetable,
+    Bread: Bread,
+    CannedGood: CannedGood,
+    Meat: Meat,
+  };
+
   data.forEach((productData) => {
-    // Create a new product object based on the data
-    if (productData.Category == "Fruit") {
-      const producttt = new Fruit(
+    const ProductClass = categoryClassMap[productData.Category];
+    if (ProductClass) {
+      const product = new ProductClass(
+        productData.ItemID,
         productData.Name,
         productData.Price,
         productData.img,
         productData.expiryDate
       );
-      // Add the product object to the 'products' array
-      products.push(producttt);
-    } else if (productData.Category == "Vegetable") {
-      const producttt = new Vegetable(
-        productData.Name,
-        productData.Price,
-        productData.img,
-        productData.expiryDate
-      );
-      // Add the product object to the 'products' array
-      products.push(producttt);
-    } else if (productData.Category == "Bread") {
-      const producttt = new Bread(
-        productData.Name,
-        productData.Price,
-        productData.img,
-        productData.expiryDate
-      );
-      // Add the product object to the 'products' array
-      products.push(producttt);
-    } else if (productData.Category == "CannedGood") {
-      const producttt = new CannedGood(
-        productData.Name,
-        productData.Price,
-        productData.img,
-        productData.expiryDate
-      );
-      // Add the product object to the 'products' array
-      products.push(producttt);
-    } else if (productData.Category == "Meat") {
-      const producttt = new Meat(
-        productData.Name,
-        productData.Price,
-        productData.img,
-        productData.expiryDate
-      );
-      // Add the product object to the 'products' array
-      products.push(producttt);
+      products.push(product);
     }
-    //itemId: productData.ItemID,
   });
 }
 
