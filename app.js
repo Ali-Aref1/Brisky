@@ -2,6 +2,9 @@ const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 
+//This is a link to my nodejs file. I have to import it here to use it. ~ Ali
+const accountmgmt = require("./accountmgmt");
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
