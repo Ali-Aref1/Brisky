@@ -1,7 +1,9 @@
 const express = require("express");
 const mysql = require("mysql");
+const bodyParser = require("body-parser");
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen("3000", () => {
   console.log("server is succesfuly runing on port 3000");
@@ -22,6 +24,8 @@ db.connect((err) => {
   }
   console.log("connection done");
 });
+
+// /--------------------------------/
 
 // now lets insert on our table try
 app.get("/addpost1", (req, res) => {
@@ -57,9 +61,14 @@ app.get("/addpost3", (req, res) => {
       throw err;
     }
     console.log(result);
-    res.send("select all data");
+    const jsonStringt = JSON.stringify(result);
+    res.send("<p>" + jsonStringt + "</p>");
   });
 });
+
+// quary to select all prodeucts (items from data base)
+
+//---------------------------------------------------------------------------------------------------------------//
 
 // const { creatPool } = require("mysql");
 // const pool = creatPool({
