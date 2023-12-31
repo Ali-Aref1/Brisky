@@ -50,6 +50,9 @@ app.get("/account.js", (err, res) => {
   res.type("application/javascript");
   res.sendFile(__dirname + "/account.js");
 });
+app.get("/History", (err, res) => {
+  res.sendFile(__dirname + "/History.html");
+});
 
 // now lets insert on our table try
 app.get("/addpost1", (req, res) => {
