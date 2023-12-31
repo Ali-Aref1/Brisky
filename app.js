@@ -140,6 +140,7 @@ app.get("/hazem.css", function (req, res) {
 });
 //-------------------------------------------------------------//
 
+//Payment method stuff!!!!!//
 app.get("/getPMethod", (req, res) => {
   let sql = "SELECT * FROM PaymentMethod";
   let query = db.query(sql, (err, result) => {
@@ -159,6 +160,7 @@ app.post("/delPMethod", (req, res) => {
       throw err;
     }
   });
+  console.log("Payment Method deleted!")
     
 });
 app.post("/addPMethod", (req, res) => {
@@ -169,9 +171,46 @@ app.post("/addPMethod", (req, res) => {
       throw err;
     }
   });
+  console.log("Payment Method added!")
 });
 
 //---------------------------------------------------------------------------------------------------------------//
+app.get("/getAddress", (req, res) => {
+  let sql = "SELECT * FROM Address";
+  let query = db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    console.log(result);
+    const jsonStringt = JSON.stringify(result);
+    res.send(jsonStringt);
+  });
+});
+
+app.post("/addAddress", (req, res) => {
+  const add = req.body.address;
+  let sql = `INSERT INTO Address (line1,line2,region,city,userID) VALUES ("${add.line1}","${add.line2}","${add.region}","${add.city}", 1)`
+  let query = db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(JSON.stringify(result));
+  });
+  console.log("Address added!");
+  
+});
+
+app.post("/delAddress", (req, res) => {
+  const add = req.body.address;
+  let sql = `DELETE FROM Address WHERE id = ${add}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+  });
+  console.log("Address deleted!")
+    
+});
 
 // app.get("/", function (err, res) {
 //   res.sendFile(__dirname + "/index.html");

@@ -1,7 +1,6 @@
 
 var paymentMethods = [];
 var addresses = [];
-var memoryAddresses = JSON.parse(localStorage.getItem('addresses')) || [];
 var modal;
 var modalText;
 var pMethodForm;
@@ -37,7 +36,8 @@ function toggleModal(action){
 
 //On DOM load, payment methods and addresses are loaded from memory, and listeners are assigned
 document.addEventListener("DOMContentLoaded",function(){
-    getInfo();
+    getPMethods();
+    getAddresses();
     modal= document.getElementById("modal");
     modalText= document.getElementById("modalText")
     pMethodForm=document.getElementById('pMethodForm')
@@ -45,9 +45,6 @@ document.addEventListener("DOMContentLoaded",function(){
     pmtable = document.getElementById("paymentMethods");
     addtable = document.getElementById("addressBook");
     renderPMethods();
-    memoryAddresses.forEach((address)=>{
-        new Address(address.line1,address.line2,address.region,address.city);
-    })
     renderAddressBook();
     document.getElementById("addPMethod").addEventListener("click", function () {
         toggleModal("pMethod");
@@ -71,7 +68,7 @@ document.addEventListener("DOMContentLoaded",function(){
         let expMonth= document.forms["pMethodForm"]["expMonth"].value;
         let expYear= document.forms["pMethodForm"]["expYear"].value;
         let cvv= document.forms["pMethodForm"]["cvv"].value;
-        addPMethod(new PaymentMethod(cardName,cardNum,`${expMonth}/${expYear}`,cvv));
+        addPMethod(new PaymentMethod(cardName,cardNum,`${expMonth}/${expYear}`,cvv,1));
         toggleModal();
         pMethodForm.reset()
         addressForm.reset();
@@ -83,8 +80,8 @@ document.addEventListener("DOMContentLoaded",function(){
         let line2= document.forms["addressForm"]["line2"].value;
         let region= document.forms["addressForm"]["region"].value;
         let city= document.forms["addressForm"]["city"].value;
-        new Address(line1,line2,region,city);
-        saveAddresses();
+        let add = new Address(line1,line2,region,city,1)
+        addAddress(add)
         toggleModal();
         pMethodForm.reset()
         addressForm.reset();
@@ -121,11 +118,13 @@ class PaymentMethod {
     }
 }
 class Address{
-    constructor(line1, line2, region, city){
+    constructor(line1, line2, region, city, userID){
+        this.id=null;
         this.line1=line1;
         this.line2=line2;
         this.region=region;
         this.city=city;
+        this.userID=userID;
         addresses.push(this);
         renderAddressBook();
     }
@@ -134,7 +133,7 @@ class Address{
         if (index !== -1) {
             addresses.splice(index, 1);
         }
-        saveAddresses();
+        deleteAddress(this)
         delete this;
         
     }
@@ -292,13 +291,11 @@ function renderAddressBook(){
     })
 }
 
-function saveAddresses(){
-    localStorage.setItem('addresses', JSON.stringify(addresses));
-}
+
 
 //Backend interactions:
 
-async function getInfo(e){
+async function getPMethods(e){
     
     const res = await fetch("http://localhost:3000/getPMethod",
         {
@@ -307,6 +304,7 @@ async function getInfo(e){
         
     )
     const data = await res.json()
+    console.log("Payment Methods:")
     console.log(data)
     data.forEach((method)=>{
         new PaymentMethod(method.name,method.num,method.expiryDate,method.cvv,method.userID);
@@ -325,7 +323,7 @@ async function deletePMethod(method){
        
         
     )
-    console.log("Payment Method deleted!")
+    
 }
 async function addPMethod(method){
     await fetch("http://localhost:3000/addPMethod",
@@ -339,5 +337,53 @@ async function addPMethod(method){
        
        
    )
-   console.log("Payment Method added!")
+   
+}
+async function getAddresses(e){
+    
+    const res = await fetch("http://localhost:3000/getAddress",
+        {
+            method: 'GET'
+        }
+        
+    )
+    const data = await res.json()
+    console.log("Addresses:")
+    console.log(data)
+    data.forEach((address)=>{
+        let add = new Address(address.line1,address.line2,address.region,address.city);
+        add.id = address.id;
+    })
+}
+
+async function addAddress(address){
+    const res = await fetch("http://localhost:3000/addAddress",
+       {
+           method: 'POST',
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify({address})
+       }
+       
+       
+   )
+   const data = await res.json()
+   address.id=data.insertId;
+   
+}
+
+async function deleteAddress(address){
+    await fetch("http://localhost:3000/delAddress",
+       {
+           method: 'POST',
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify({address : address.id})
+       }
+       
+       
+   )
+   
 }
