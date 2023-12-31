@@ -129,14 +129,64 @@ const carrot = new Vegetable(
 
 const products = [wholeWheatBread, beef, cannedBeans, apple, tommato, carrot];
 
-// function addProduct(product) {
-//   products.push(product);
-// }
+//Backend interactions:
 
-// module.exports = {
-//   products,
-//   addProduct,
-// };
+async function getInfo(e) {
+  const res = await fetch("http://localhost:3000/getproducts", {
+    method: "GET",
+  });
+  const data = await res.json();
+  data.forEach((productData) => {
+    // Create a new product object based on the data
+    if (productData.Category == "Fruit") {
+      const producttt = new Fruit(
+        productData.Name,
+        productData.Price,
+        productData.img,
+        productData.expiryDate
+      );
+      // Add the product object to the 'products' array
+      products.push(producttt);
+    } else if (productData.Category == "Vegetable") {
+      const producttt = new Vegetable(
+        productData.Name,
+        productData.Price,
+        productData.img,
+        productData.expiryDate
+      );
+      // Add the product object to the 'products' array
+      products.push(producttt);
+    } else if (productData.Category == "Bread") {
+      const producttt = new Bread(
+        productData.Name,
+        productData.Price,
+        productData.img,
+        productData.expiryDate
+      );
+      // Add the product object to the 'products' array
+      products.push(producttt);
+    } else if (productData.Category == "CannedGood") {
+      const producttt = new CannedGood(
+        productData.Name,
+        productData.Price,
+        productData.img,
+        productData.expiryDate
+      );
+      // Add the product object to the 'products' array
+      products.push(producttt);
+    } else if (productData.Category == "Meat") {
+      const producttt = new Meat(
+        productData.Name,
+        productData.Price,
+        productData.img,
+        productData.expiryDate
+      );
+      // Add the product object to the 'products' array
+      products.push(producttt);
+    }
+    //itemId: productData.ItemID,
+  });
+}
 
 function displayProducts() {
   var productImages = document.getElementById("productImages");
@@ -144,7 +194,6 @@ function displayProducts() {
   productImages.innerHTML = "";
 
   //  now create a new div for each product be carful
-
   products.forEach(function (product) {
     var productDiv = document.createElement("div");
     productDiv.className = "product";
@@ -169,7 +218,15 @@ function displayProducts() {
 }
 
 // lets call this function to try it
-displayProducts();
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Show loading indicator here
+  getInfo().then(() => {
+    // Hide loading indicator after fetching data
+    productImages.innerHTML = "";
+    displayProducts();
+  });
+});
 
 // this is 7azoo function he put it at end of the html page and fff (*￣3￣)╭ its just moved
 

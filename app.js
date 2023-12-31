@@ -88,23 +88,23 @@ app.get("/addpost3", (req, res) => {
     res.send("<p>" + jsonStringt + "</p>");
   });
 });
-app.get("/testroute",(req,res)=>{
+app.get("/testroute", (req, res) => {
   res.send("hello world");
-})
+});
 
 // quary to select all prodeucts (items from data base)
 
-// app.get("/products", (req, res) => {
-//   const sql = "SELECT * FROM Item";
-//   db.query(sql, (err, result) => {
-//     if (err) {
-//       throw err;
-//     }
-//     const jsonStringta = JSON.stringify(result);
-//     res.send("<p>" + jsonStringta + "</p>");
-//     //res.json(result);
-//   });
-// });
+app.get("/getproducts", (req, res) => {
+  const sql = "SELECT * FROM Item";
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    const jsonStringta = JSON.stringify(result);
+    res.send(jsonStringta);
+    //res.json(result);
+  });
+});
 
 // the nest get and use
 
@@ -137,6 +137,7 @@ app.get("/hazem.css", function (req, res) {
   res.type("text/css"); // Set the MIME type to CSS
   res.sendFile(__dirname + "/hazem.css");
 });
+//-------------------------------------------------------------//
 
 app.get("/getPMethod", (req, res) => {
   let sql = "SELECT * FROM PaymentMethod";
