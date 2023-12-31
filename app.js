@@ -88,6 +88,9 @@ app.get("/addpost3", (req, res) => {
     res.send("<p>" + jsonStringt + "</p>");
   });
 });
+app.get("/testroute",(req,res)=>{
+  res.send("hello world");
+})
 
 // quary to select all prodeucts (items from data base)
 
@@ -133,6 +136,18 @@ app.get("/products.js", function (req, res) {
 app.get("/hazem.css", function (req, res) {
   res.type("text/css"); // Set the MIME type to CSS
   res.sendFile(__dirname + "/hazem.css");
+});
+
+app.get("/getPMethod", (req, res) => {
+  let sql = "SELECT * FROM PaymentMethod";
+  let query = db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    console.log(result);
+    const jsonStringt = JSON.stringify(result);
+    res.send(jsonStringt);
+  });
 });
 
 //---------------------------------------------------------------------------------------------------------------//

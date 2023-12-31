@@ -1,7 +1,6 @@
 
 var paymentMethods = [];
 var addresses = [];
-var memoryMethods = JSON.parse(localStorage.getItem('paymentMethods')) || [];
 var memoryAddresses = JSON.parse(localStorage.getItem('addresses')) || [];
 var modal;
 var modalText;
@@ -45,9 +44,6 @@ document.addEventListener("DOMContentLoaded",function(){
     addressForm=document.getElementById('addressForm')
     pmtable = document.getElementById("paymentMethods");
     addtable = document.getElementById("addressBook");
-    memoryMethods.forEach((method)=>{
-        new PaymentMethod(method.name,method.num,method.expiryDate,method.cvv);
-    })
     renderPMethods();
     memoryAddresses.forEach((address)=>{
         new Address(address.line1,address.line2,address.region,address.city);
@@ -106,11 +102,12 @@ document.addEventListener("DOMContentLoaded",function(){
 
 //Updates the paymentMethods array and the localstorage automatically
 class PaymentMethod {
-    constructor(name, num, expiryDate, cvv) {
+    constructor(name, num, expiryDate, cvv, userID) {
         this.name = name;
         this.num = num;
         this.expiryDate = expiryDate;
         this.cvv=cvv;
+        this.userID=userID;
         paymentMethods.push(this);
         renderPMethods();
     }
@@ -173,7 +170,7 @@ function renderPMethods(){
         const s2=document.createElement("span");
         const s3=document.createElement("span");
         s1.textContent=method.name
-        s2.textContent=`●●●● ●●●● ●●●● ${method.num.slice(-4)}`
+        s2.textContent=`●●●● ●●●● ●●●● ${method.num.toString().slice(-4)}`
         s3.textContent=method.expiryDate
         tableRow.appendChild(t1)
         tableRow.appendChild(t2)
@@ -295,9 +292,6 @@ function renderAddressBook(){
         
     })
 }
-function savePMethods() {
-    localStorage.setItem('paymentMethods', JSON.stringify(paymentMethods));
-}
 
 function saveAddresses(){
     localStorage.setItem('addresses', JSON.stringify(addresses));
@@ -306,12 +300,16 @@ function saveAddresses(){
 //Backend interactions:
 
 async function getInfo(e){
-    e.preventDefault()
-    const res = await fetch("http://localhost:3000/addpost3",
+    
+    const res = await fetch("http://localhost:3000/getPMethod",
         {
             method: 'GET'
         }
         
     )
-    console.log(res)
+    const data = await res.json()
+    console.log(data)
+    data.forEach((method)=>{
+        new PaymentMethod(method.name,method.num,method.expiryDate,method.cvv,method.userID);
+    })
 }
