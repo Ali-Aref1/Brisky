@@ -5,8 +5,10 @@ const bodyParser = require("body-parser");
 //This is a link to my nodejs file. I have to import it here to use it. ~ Ali
 const accountmgmt = require("./accountmgmt");
 
+//---------------------------//
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.listen("3000", () => {
   console.log("server is succesfuly runing on port 3000");
@@ -71,7 +73,55 @@ app.get("/addpost3", (req, res) => {
 
 // quary to select all prodeucts (items from data base)
 
+// app.get("/products", (req, res) => {
+//   const sql = "SELECT * FROM Item";
+//   db.query(sql, (err, result) => {
+//     if (err) {
+//       throw err;
+//     }
+//     const jsonStringta = JSON.stringify(result);
+//     res.send("<p>" + jsonStringta + "</p>");
+//     //res.json(result);
+//   });
+// });
+
+// the nest get and use
+
+app.use("/assets", express.static("assets"));
+
+app.get("/Products", function (err, res) {
+  res.sendFile(__dirname + "/Products.html");
+});
+app.get("/item.html", function (err, res) {
+  res.sendFile(__dirname + "/item.html");
+});
+app.get(["/checkout", "/checkout.html"], function (req, res) {
+  res.sendFile(__dirname + "/checkout.html");
+});
+
+app.get("/chckout.js", function (req, res) {
+  res.type("application/javascript"); // Set the MIME type to JavaScript
+  res.sendFile(__dirname + "/chckout.js");
+});
+app.get("/styleee.css", function (req, res) {
+  res.type("text/css"); // Set the MIME type to CSS
+  res.sendFile(__dirname + "/styleee.css");
+});
+
+app.get("/products.js", function (req, res) {
+  res.type("application/javascript"); // Set the MIME type to JavaScript
+  res.sendFile(__dirname + "/products.js");
+});
+app.get("/hazem.css", function (req, res) {
+  res.type("text/css"); // Set the MIME type to CSS
+  res.sendFile(__dirname + "/hazem.css");
+});
+
 //---------------------------------------------------------------------------------------------------------------//
+
+// app.get("/", function (err, res) {
+//   res.sendFile(__dirname + "/index.html");
+// });
 
 // const { creatPool } = require("mysql");
 // const pool = creatPool({

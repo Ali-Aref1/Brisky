@@ -129,6 +129,15 @@ const carrot = new Vegetable(
 
 const products = [wholeWheatBread, beef, cannedBeans, apple, tommato, carrot];
 
+// function addProduct(product) {
+//   products.push(product);
+// }
+
+// module.exports = {
+//   products,
+//   addProduct,
+// };
+
 function displayProducts() {
   var productImages = document.getElementById("productImages");
 
