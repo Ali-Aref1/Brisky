@@ -7,6 +7,8 @@ const accountmgmt = require("./accountmgmt");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use("/assets", express.static("assets"));
 
 app.listen("3000", () => {
   console.log("server is succesfuly runing on port 3000");
@@ -29,6 +31,22 @@ db.connect((err) => {
 });
 
 // /--------------------------------/
+
+// display home page
+app.get("/", (err, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+app.get("/stylesheet.css", function (req, res) {
+  res.type("text/css"); // Set the MIME type to CSS
+  res.sendFile(__dirname + "/stylesheet.css");
+});
+app.get("/account", (err, res) => {
+  res.sendFile(__dirname + "/account.html");
+});
+app.get("/account.js", (err, res) => {
+  res.type("application/javascript");
+  res.sendFile(__dirname + "/account.js");
+});
 
 // now lets insert on our table try
 app.get("/addpost1", (req, res) => {

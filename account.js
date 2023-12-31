@@ -38,13 +38,13 @@ function toggleModal(action){
 
 //On DOM load, payment methods and addresses are loaded from memory, and listeners are assigned
 document.addEventListener("DOMContentLoaded",function(){
+    getInfo();
     modal= document.getElementById("modal");
     modalText= document.getElementById("modalText")
     pMethodForm=document.getElementById('pMethodForm')
     addressForm=document.getElementById('addressForm')
     pmtable = document.getElementById("paymentMethods");
     addtable = document.getElementById("addressBook");
-    console.log(paymentMethods);
     memoryMethods.forEach((method)=>{
         new PaymentMethod(method.name,method.num,method.expiryDate,method.cvv);
     })
@@ -301,4 +301,17 @@ function savePMethods() {
 
 function saveAddresses(){
     localStorage.setItem('addresses', JSON.stringify(addresses));
+}
+
+//Backend interactions:
+
+async function getInfo(e){
+    e.preventDefault()
+    const res = await fetch("http://localhost:3000/addpost3",
+        {
+            method: 'GET'
+        }
+        
+    )
+    console.log(res)
 }
