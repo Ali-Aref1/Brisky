@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
     signUpForm.addEventListener('submit', function (event) {
        
-        event.preventDefault();
+
 
         
-        window.location.href = 'Login.html';
+        window.location.href = 'Login';
     });
 });

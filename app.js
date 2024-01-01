@@ -149,6 +149,24 @@ app.get("/hazem.css", function (req, res) {
   res.sendFile(__dirname + "/hazem.css");
 });
 
+app.get("/joe.css", function (req, res) {
+  res.type("text/css"); // Set the MIME type to CSS
+  res.sendFile(__dirname + "/joe.css");
+});
+app.get("/SignUp", (err, res) => {
+  res.sendFile(__dirname + "/SignUp.html");
+});
+app.get("/SignUp.js", (err, res) => {
+  res.type("application/javascript");
+  res.sendFile(__dirname + "/SignUp.js");
+});
+app.get("/Login", (err, res) => {
+  res.sendFile(__dirname + "/Login.html");
+});
+app.get("/Login.js", (err, res) => {
+  res.type("application/javascript");
+  res.sendFile(__dirname + "/Login.js");
+});
 //-------------------------------------------------------------//
 
 //Payment method stuff!!!!!//
@@ -218,6 +236,19 @@ app.post("/delAddress", (req, res) => {
     }
   });
   console.log("Address deleted!");
+});
+
+
+// Sign Up & Login
+app.post("/SignUpUser", (req, res) => {
+  const user = req.body;
+  let sql = `INSERT INTO User (FirstName, LastName, Email, password, phone_no, DOB) VALUES("${user.first_name}", "${user.last_name}", "${user.email}", "${user.password}", "+20${user.phone_number}", "${user.date_of_birth}")`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+  });
+  res.sendFile(__dirname + "/Login.html");
 });
 
 // app.get("/", function (err, res) {

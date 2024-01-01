@@ -15,23 +15,22 @@
         <button class="pagebutton"><p>Account</p></button>
         <button class="pagebutton"><p>Orders</p></button>
         <a href="index.html"><img src="assets/logo.png" width="150"></a>
-        <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
+        <button onclick="location.href='Login'" class="pagebutton"><p>Login</p></button>
         <button class="pagebutton"><p>Sign Up</p></button>
         
     </div>
     <!--End Top bar-->
     <div class="signup-box">
         <h2>Sign Up</h2>
-        <form>
+        <form action = "/SignUpUser" method="POST">
             <input type="text" placeholder="First Name" name="first_name" required pattern="[A-Z][a-z]*">
           
             <input type="text" placeholder="Last Name" name="last_name" required pattern="[A-Z][a-z]*">
-            
-            <input type="email" placeholder="E-mail" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
-           
+
+            <input type="email" id="email" name="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="E-mail">
             <input type="password" placeholder="Password" name="password" id="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
 
-            <input type="password" placeholder="Confirm Password" name="confirm_password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+            <input type="password" placeholder="Confirm Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
         
             
             <div class="phone-number-wrapper">
