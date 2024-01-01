@@ -366,6 +366,10 @@ function displayCartItems() {
   var totalPrice = calculateTotalPrice(cart);
   sessionStorage.setItem("totalPrice", totalPrice);
   totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+  // Calculate count
+  var totalCount = calculateTotalCount(cart);
+  sessionStorage.setItem("totalCount", totalCount);
+  totalCountElement.textContent = `$${totalCount.toFixed(2)}`;
 }
 
 //----------------------------------------------------------------------------------------------//
@@ -427,6 +431,11 @@ function displayCartItems_old_only_fruit_and_Vegetable() {
 function calculateTotalPrice(cart) {
   var totalPrice = cart.reduce((total, product) => total + product.price, 0);
   return totalPrice;
+}
+
+function calculateTotalCount(cart) {
+  var totalCount = cart.length;
+  return totalCount;
 }
 
 // now we opend the checkout page

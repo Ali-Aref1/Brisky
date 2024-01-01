@@ -1,7 +1,9 @@
 //// want to write the data like the total pri ce`(*>﹏<*)′
 document.addEventListener("DOMContentLoaded", function () {
   var totalPrice = sessionStorage.getItem("totalPrice");
+  var totalcount = sessionStorage.getItem("totalcount");
   console.log("sessionStorage", totalPrice);
+  console.log("sessionStorage", totalcount);
 
   var totalPriceElement = document.getElementById("totalPriceDisplay");
   if (totalPrice !== null) {
