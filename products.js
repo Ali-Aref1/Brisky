@@ -368,8 +368,8 @@ function displayCartItems() {
   totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
   // Calculate count
   var totalCount = calculateTotalCount(cart);
+  console.log(totalCount);
   sessionStorage.setItem("totalCount", totalCount);
-  totalCountElement.textContent = `$${totalCount.toFixed(2)}`;
 }
 
 //----------------------------------------------------------------------------------------------//

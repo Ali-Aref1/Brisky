@@ -110,6 +110,47 @@ app.get("/getproducts", (req, res) => {
   });
 });
 
+app.post("/addOrder", (req, res) => {
+  const order = req.body.order;
+  let sql = `INSERT INTO Orders (Status, Cost, Count, UserId, PromoCode, AddressId) VALUES ("${order.Status}", ${order.Cost}, ${order.Count}, ${order.UserId}, "${order.PromoCode}", ${order.AddressId})`;
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(JSON.stringify(result));
+  });
+  console.log("Order added!");
+});
+
+app.post("/addAddressID", (req, res) => {
+  const add = req.body.address;
+  let sql = `SELECT FROM Address WHERE id = ${add}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+  });
+  console.log("Address deleted!");
+});
+
+app.post("/addPMethodDD", (req, res) => {
+  try {
+    const method = req.body.method;
+    let sql = `INSERT INTO PaymentMethod VALUES ("${method.name}", ${method.num}, "${method.expiryDate}", ${method.cvv},${method.userID})`;
+    let query = db.query(sql, (err, result) => {
+      if (err) {
+        throw err;
+      }
+    });
+    res.status(200).send("Payment Method added successfully");
+  } catch (error) {
+    console.error("Error adding payment method:", error);
+    res.status(500).send("Internal Server Error");
+  }
+  console.log("Payment Method added!");
+});
+
 // the nest get and use
 
 app.use("/assets", express.static("assets"));
