@@ -120,8 +120,15 @@ app.get("/Products", function (err, res) {
 app.get("/item.html", function (err, res) {
   res.sendFile(__dirname + "/item.html");
 });
-app.get(["/checkout", "/checkout.html"], function (req, res) {
+app.get("/checkout.html", function (req, res) {
   res.sendFile(__dirname + "/checkout.html");
+});
+app.get("/payment.html", function (req, res) {
+  res.sendFile(__dirname + "/payment.html");
+});
+app.get("/payment.js", function (req, res) {
+  res.type("application/javascript"); // Set the MIME type to JavaScript
+  res.sendFile(__dirname + "/payment.js");
 });
 
 app.get("/chckout.js", function (req, res) {
@@ -141,6 +148,7 @@ app.get("/hazem.css", function (req, res) {
   res.type("text/css"); // Set the MIME type to CSS
   res.sendFile(__dirname + "/hazem.css");
 });
+
 //-------------------------------------------------------------//
 
 //Payment method stuff!!!!!//
@@ -163,18 +171,17 @@ app.post("/delPMethod", (req, res) => {
       throw err;
     }
   });
-  console.log("Payment Method deleted!")
-    
+  console.log("Payment Method deleted!");
 });
 app.post("/addPMethod", (req, res) => {
   const method = req.body.method;
-  let sql = `INSERT INTO PaymentMethod VALUES ("${method.name}", ${method.num}, "${method.expiryDate}", ${method.cvv}, 1)`
+  let sql = `INSERT INTO PaymentMethod VALUES ("${method.name}", ${method.num}, "${method.expiryDate}", ${method.cvv}, 1)`;
   let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;
     }
   });
-  console.log("Payment Method added!")
+  console.log("Payment Method added!");
 });
 
 //---------------------------------------------------------------------------------------------------------------//
@@ -192,7 +199,7 @@ app.get("/getAddress", (req, res) => {
 
 app.post("/addAddress", (req, res) => {
   const add = req.body.address;
-  let sql = `INSERT INTO Address (line1,line2,region,city,userID) VALUES ("${add.line1}","${add.line2}","${add.region}","${add.city}", 1)`
+  let sql = `INSERT INTO Address (line1,line2,region,city,userID) VALUES ("${add.line1}","${add.line2}","${add.region}","${add.city}", 1)`;
   let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -200,7 +207,6 @@ app.post("/addAddress", (req, res) => {
     res.send(JSON.stringify(result));
   });
   console.log("Address added!");
-  
 });
 
 app.post("/delAddress", (req, res) => {
@@ -211,8 +217,7 @@ app.post("/delAddress", (req, res) => {
       throw err;
     }
   });
-  console.log("Address deleted!")
-    
+  console.log("Address deleted!");
 });
 
 // app.get("/", function (err, res) {
