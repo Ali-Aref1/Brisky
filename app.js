@@ -296,10 +296,10 @@ app.post("/SignUpUser", (req, res) => {
     
     if (result.affectedRows > 0) {
       // Successfully signed up
-      res.sendFile(__dirname + "/Login.html");
+      res.redirect('/Login');
     } else {
       // if Duplicate email
-      res.status(400).send({ success: false, message: "Email already in use" });
+      res.status(400).json({ success: false, message: "Email already in use" });
     }
   });
 });

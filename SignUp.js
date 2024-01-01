@@ -1,34 +1,50 @@
+var formData;
+
 document.addEventListener('DOMContentLoaded', function () {
+  var signUpForm = document.querySelector('.signup-box form');
 
-    var signUpForm = document.querySelector('.signup-box form');
-
-    
-    signUpForm.addEventListener('submit', function (event) {
-       
-
-
-        
-        window.location.href = 'Login';
-    });
+  signUpForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    formData = Object.fromEntries(new FormData(signUpForm).entries());
+    console.log(formData);
+    SignUpUser();
+  });
 });
-fetch('/SignUpUser', {
+
+async function SignUpUser() {
+  fetch('/SignUpUser', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(formData),
   })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      // if Successful registration
-      window.location.href = '/Login.html';
-    } else {
-      // Error occurred
-      alert(data.message);
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
+  .then(handleResponse)
+  .then(handleData)
+  .catch(handleError);
+}
 
-  });
+function handleResponse(response) {
+  const contentType = response.headers.get('Content-Type');
+  
+  if (contentType && contentType.includes('application/json')) {
+    return response.json();
+  } else {
+    window.location.replace('/Login'); // Redirect if not JSON
+    return Promise.reject('Redirecting...');
+  }
+}
+
+function handleData(data) {
+  if (data.success) {
+    // Successful registration
+  } else {
+    // Error occurred
+    alert(data.message);
+    console.log("User Already Exists!");
+  }
+}
+
+function handleError(error) {
+  console.error('Error:', error);
+}
