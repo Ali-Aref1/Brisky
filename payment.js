@@ -1,9 +1,44 @@
+class Address {
+  constructor(line1, line2, region, city, userID) {
+    this.id = null;
+    this.line1 = line1;
+    this.line2 = line2;
+    this.region = region;
+    this.city = city;
+    this.userID = userID;
+  }
+}
+
+class PaymentMethod {
+  constructor(name, num, expiryDate, cvv, userID) {
+    this.name = name;
+    this.num = num;
+    this.expiryDate = expiryDate;
+    this.cvv = cvv;
+    this.userID = userID;
+  }
+}
+
+class Order {
+  constructor(OrderId, Status, Cost, Count, userId, PromoCode, AddressId) {
+    this.OrderId = OrderId;
+    this.Status = Status;
+    this.Cost = Cost;
+    this.Count = Count;
+    this.UserId = userId;
+    this.PromoCode = PromoCode;
+    this.AddressId = AddressId;
+  }
+}
+
+function getUserId() {
+  return 3; // untill the login for now
+}
+
 //// want to write the data like the total pri ce`(*>﹏<*)′
 document.addEventListener("DOMContentLoaded", function () {
   var totalPrice = sessionStorage.getItem("totalPrice");
-  var totalcount = sessionStorage.getItem("totalcount");
-  console.log("sessionStorage", totalPrice);
-  console.log("sessionStorage", totalcount);
+  var totalcount = sessionStorage.getItem("totalCount");
 
   var totalPriceElement = document.getElementById("totalPriceDisplay");
   if (totalPrice !== null) {
@@ -15,10 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // buy method (❁´◡`❁)
-function BUY() {
+// buy method (❁´◡`❁)
+async function BUY() {
+  const userId = getUserId();
   if (!validateForm()) {
     return; // Exit if validation fails
   }
+
   // Get selected payment method
   const paymentMethod = document.getElementById("paymentMethod").value;
 
@@ -29,26 +67,69 @@ function BUY() {
   const expirationDateD = document.getElementById("expirationDateD").value;
 
   // Get delivery information
-  const address = document.getElementById("addressLine1").value;
+  const addressLine1 = document.getElementById("addressLine1").value;
+  const addressLine2 = document.getElementById("addressLine2").value;
+  const Region = document.getElementById("Region").value;
+  const city = document.getElementById("city").value;
+
+  // Get other necessary details for order
   const deliveryOption = document.querySelector(
     'input[name="deliveryOption"]:checked'
   ).value;
+  const totalPrice = sessionStorage.getItem("totalPrice");
+  const totalcount = sessionStorage.getItem("totalCount");
 
   console.log("Payment Method:", paymentMethod);
-  if (paymentMethod === "creditCard") {
-    console.log("Credit Card Number:", creditCardNumber);
-    console.log("Expiration Date:", expirationDateC);
-  } else if (paymentMethod === "debitCard") {
-    console.log("Debit Card Number:", depitCardNumber);
-    console.log("Expiration Date:", expirationDateD);
-  }
-  console.log("Delivery Address:", address);
+  console.log("Delivery Address:", addressLine1, addressLine2, Region, city);
   console.log("Delivery Option:", deliveryOption);
+  console.log("Total Price:", totalPrice);
+  console.log("Total Count:", totalcount);
 
-  const form = document.querySelector("form");
-  form.submit();
-  // For demonstration purposes, open a new page
-  window.open("confirmation.html", "_blank");
+  try {
+    // Add address
+    const address = new Address(
+      addressLine1,
+      addressLine2,
+      Region,
+      city,
+      userId
+    );
+    await addAddress(address);
+    console.log(document.getElementById("CVV").value);
+    // Add payment method
+    const paymentMethodObj = new PaymentMethod(
+      paymentMethod,
+      paymentMethod === "creditCard" ? creditCardNumber : depitCardNumber,
+      paymentMethod === "creditCard" ? expirationDateC : expirationDateD,
+      paymentMethod === "creditCard"
+        ? document.getElementById("CVV").value
+        : document.getElementById("CVV").value,
+      userId
+    );
+    console.log("enterd order");
+    console.log("enterd order");
+    // Add order
+    const order = new Order(
+      5,
+      "Pending",
+      totalPrice,
+      totalcount,
+      userId,
+      "6", // Promo code (You may include this if applicable)
+      24 // Use the ID of the added address
+    );
+    console.log(order.AddressId);
+    console.log(order.AddressId);
+    await addOrder(order);
+
+    await addPMethod(paymentMethodObj);
+
+    // For demonstration purposes, open a new page
+    window.open("confirmation.html", "_blank");
+  } catch (error) {
+    console.error("Error adding address, payment method, or order:", error);
+    alert("An error occurred during the checkout process. Please try again.");
+  }
 }
 
 function validateForm() {
@@ -80,10 +161,10 @@ function validateForm() {
   }
 
   const addressLine1 = document.getElementById("addressLine1").value;
-  const zipCode = document.getElementById("zipCode").value;
+  const Region = document.getElementById("Region").value;
   const city = document.getElementById("city").value;
 
-  if (!addressLine1 || !zipCode || !city) {
+  if (!addressLine1 || !Region || !city) {
     alert("Please fill in all required address fields");
     return false;
   }
@@ -109,3 +190,56 @@ document
       depitCardDetails.style.display = "none";
     }
   });
+
+// now e want to add all this data to data base
+
+///////////////////////
+//////////////////////////
+
+async function addOrder(order) {
+  await fetch("http://localhost:3000/addOrder", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ order }),
+  });
+  console.log("succfully");
+}
+
+async function addAddress(address) {
+  const res = await fetch("http://localhost:3000/addAddress", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ address }),
+  });
+  const data = await res.json();
+  address.id = data.insertId;
+}
+
+async function addPMethod(method) {
+  try {
+    const response = await fetch("http://localhost:3000/addPMethodDD", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ method }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    console.log("Payment Method added!");
+  } catch (error) {
+    console.error("Error adding payment method:", error);
+    throw error; // Rethrow the error to indicate a failure in the function
+  }
+}
+
+function showSuccessNotification() {
+  alert("Order completed successfully!");
+}
