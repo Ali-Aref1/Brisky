@@ -217,7 +217,6 @@ app.get("/getPMethod", (req, res) => {
     if (err) {
       throw err;
     }
-    console.log(result);
     const jsonStringt = JSON.stringify(result);
     res.send(jsonStringt);
   });
@@ -231,6 +230,7 @@ app.post("/delPMethod", (req, res) => {
     }
   });
   console.log("Payment Method deleted!");
+  res.sendFile(__dirname + "/account.html");
 });
 app.post("/addPMethod", (req, res) => {
   const method = req.body.method;
@@ -241,6 +241,7 @@ app.post("/addPMethod", (req, res) => {
     }
   });
   console.log("Payment Method added!");
+  res.sendFile(__dirname + "/account.html");
 });
 
 //---------------------------------------------------------------------------------------------------------------//
@@ -250,7 +251,6 @@ app.get("/getAddress", (req, res) => {
     if (err) {
       throw err;
     }
-    console.log(result);
     const jsonStringt = JSON.stringify(result);
     res.send(jsonStringt);
   });
@@ -266,6 +266,7 @@ app.post("/addAddress", (req, res) => {
     res.send(JSON.stringify(result));
   });
   console.log("Address added!");
+  res.sendFile(__dirname + "/account.html");
 });
 
 app.post("/delAddress", (req, res) => {
@@ -277,6 +278,7 @@ app.post("/delAddress", (req, res) => {
     }
   });
   console.log("Address deleted!");
+  res.sendFile(__dirname + "/account.html");
 });
 
 
