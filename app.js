@@ -285,14 +285,25 @@ app.post("/delAddress", (req, res) => {
 // Sign Up & Login
 app.post("/SignUpUser", (req, res) => {
   const user = req.body;
-  let sql = `INSERT INTO User (FirstName, LastName, Email, password, phone_no, DOB) VALUES("${user.first_name}", "${user.last_name}", "${user.email}", "${user.password}", "+20${user.phone_number}", "${user.date_of_birth}")`;
+
+  let sql = `
+    INSERT IGNORE INTO User (FirstName, LastName, Email, password, phone_no, DOB) VALUES("${user.first_name}", "${user.last_name}", "${user.email}", "${user.password}", "+20${user.phone_number}", "${user.date_of_birth}")`;
+
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
     }
+    
+    if (result.affectedRows > 0) {
+      // Successfully signed up
+      res.sendFile(__dirname + "/Login.html");
+    } else {
+      // if Duplicate email
+      res.status(400).send({ success: false, message: "Email already in use" });
+    }
   });
-  res.sendFile(__dirname + "/Login.html");
 });
+
 
 // app.get("/", function (err, res) {
 //   res.sendFile(__dirname + "/index.html");
