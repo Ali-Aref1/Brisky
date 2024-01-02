@@ -94,7 +94,9 @@ async function BUY() {
       city,
       userId
     );
-    await addAddress(address);
+    console.log("before addres");
+    // await addAddress(address);
+    console.log("after addres");
     console.log(document.getElementById("CVV").value);
     // Add payment method
     const paymentMethodObj = new PaymentMethod(
@@ -110,19 +112,21 @@ async function BUY() {
     console.log("enterd order");
     // Add order
     const order = new Order(
-      5,
+      2,
       "Pending",
       totalPrice,
       totalcount,
       userId,
       "6", // Promo code (You may include this if applicable)
-      24 // Use the ID of the added address
+      47 // Use the ID of the added address
     );
     console.log(order.AddressId);
     console.log(order.AddressId);
+
     await addOrder(order);
 
     await addPMethod(paymentMethodObj);
+    await addAddress(address);
 
     // For demonstration purposes, open a new page
     window.open("confirmation.html", "_blank");
@@ -208,15 +212,27 @@ async function addOrder(order) {
 }
 
 async function addAddress(address) {
-  const res = await fetch("http://localhost:3000/addAddress", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ address }),
-  });
-  const data = await res.json();
-  address.id = data.insertId;
+  try {
+    const response = await fetch("http://localhost:3000/addAddressssD", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ address }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    address.id = data.insertId;
+
+    console.log("Address added successfully!");
+  } catch (error) {
+    console.error("Error adding address:", error);
+    throw error; // Rethrow the error to indicate a failure in the function
+  }
 }
 
 async function addPMethod(method) {
