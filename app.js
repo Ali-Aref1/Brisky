@@ -237,6 +237,12 @@ app.get("/Login.js", (err, res) => {
 app.get("/Branch", function (err, res) {
   res.sendFile(__dirname + "/Branch.html");
 });
+app.get("/Branch.js", function (err, res) {
+  res.sendFile(__dirname + "/Branch.js");
+});
+app.get("/Product", function (err, res) {
+  res.sendFile(__dirname + "/Product.html");
+});
 //-------------------------------------------------------------//
 
 //Payment method stuff!!!!!//
@@ -394,3 +400,23 @@ app.get('/user/:UserID/Order', (req, res) => {
     }
   });
 });
+
+//Branch list
+
+app.get("/getBranch", (req, res) => {
+  let sql = "SELECT Name, BranchID FROM Branch";
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Error querying the database:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+      return;
+    }
+    
+    // Extract branch names from the results
+
+    // Send the array of branch names as JSON
+    res.json(results);
+  });
+});
+
+
