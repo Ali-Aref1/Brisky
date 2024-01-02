@@ -372,3 +372,25 @@ app.post("/LoginUser", (req, res) => {
 // pool.query(`select * from try`, (err, res) => {
 //   return console.log(res);
 // });
+app.get("/TrackOrder.html", function (req, res) {
+  res.sendFile(__dirname + "/TrackOrder.html");
+});
+app.get('/user/:UserID/Order', (req, res) => {
+  const UserID = req.params.UserID;
+
+  // Retrieve orders for the specific user from the database
+  const sql = 'SELECT OrderID, Status, Cost, Count FROM Orders WHERE UserID = ?';
+  db.query(sql, [UserID], (err, results) => {
+    if (err) {
+      console.error('Error querying the database:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    if (results.length > 0) {
+      res.json({ orders: results });
+    } else {
+      res.status(404).json({ error: 'No orders found for the user' });
+    }
+  });
+});
