@@ -230,6 +230,9 @@ app.get("/SignUp.js", (err, res) => {
   res.type("application/javascript");
   res.sendFile(__dirname + "/SignUp.js");
 });
+app.get("/TrackOrder", (err, res) => {
+  res.sendFile(__dirname + "/TrackOrder.html");
+});
 app.get("/Login", (err, res) => {
   res.sendFile(__dirname + "/Login.html");
 });
@@ -237,7 +240,6 @@ app.get("/Login.js", (err, res) => {
   res.type("application/javascript");
   res.sendFile(__dirname + "/Login.js");
 });
-
 app.get("/Branch", function (err, res) {
   res.sendFile(__dirname + "/Branch.html");
 });
