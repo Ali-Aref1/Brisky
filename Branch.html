@@ -1,43 +1,36 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="hazem.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brisky - Branch Page</title>
- 
 </head>
 <body style="background-image: url(assets/Vegan-Supermarket.jpg);">
-
     
-    <!--Top bar(Don't edit!!)-->
+    <!-- Top bar(Don't edit!!) -->
     <div class="topbar">
         <button class="pagebutton"><p>Account</p></button>
         <button class="pagebutton"><p>Orders</p></button>
         <a href="/"><img src="assets/logo.png" width="150"></a>
         <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
         <button onclick="location.href='SignUp.html'" class="pagebutton"><p>Sign Up</p></button>
-        
     </div>
-    <!--End Top bar-->
+    <!-- End Top bar -->
 
     <div class="branch-page-text">Branches</div>
     <br></br>
     <div class="branch-container">
-        <select class="branch-select">
+        <select class="branch-select" id="branchSelect">
             <option value="" disabled selected>Choose your nearest branch</option>
-            <option value="branch1">Branch 1</option>
-            <option value="branch2">Branch 2</option>
-            <option value="branch3">Branch 3</option>
-            
         </select>
         <br></br>
         
-        <a href="products.html">
+        <a href="Products">
             <button class="browse-button">Browse</button>
         </a>
     </div>
-    
-    
 
+    <script src="Branch.js"></script>
 </body>
 </html>

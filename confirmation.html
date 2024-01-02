@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 10px; /* Added some padding */
+        display: flex;
+        flex-direction: column; /* Adjusted to a column layout */
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #5b0000;
+        border: 2px solid #4b0000;
+        height: 175px;
+        border-radius: 20px;
+        margin-bottom: 20px; /* Added some margin to separate top bar and content */
+        width: 80%;
+      }
+
+      .confirmation-box {
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 80%; /* Adjusted width for better visibility */
+      }
+
+      h1 {
+        margin-top: 0;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top bar (Don't edit!!) -->
+    <div class="topbar">
+      <button onclick="location.href='account.html'" class="pagebutton">
+        <p>Account</p>
+      </button>
+      <button onclick="location.href='Branch.html'" class="pagebutton">
+        <p>Orders</p>
+      </button>
+      <a href="index.html"><img src="assets/logo.png" width="150" /></a>
+      <button onclick="location.href='Login.html'" class="pagebutton">
+        <p>Login</p>
+      </button>
+      <button onclick="location.href='SignUp.html'" class="pagebutton">
+        <p>Sign Up</p>
+      </button>
+    </div>
+    <!-- End Top bar -->
+
+    <div class="confirmation-box">
+      <h1>Order Successful!</h1>
+      <p>
+        Your order has been successfully placed. Thank you for choosing our
+        service.
+      </p>
+    </div>
+  </body>
+</html>
