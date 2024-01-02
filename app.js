@@ -419,6 +419,17 @@ app.post("/changeUser", (req, res) => {
   });
 });
 
+app.post("/getName", (req, res) => {
+  const userID = req.body.userID;
+  let sql = `SELECT FirstName, LastName FROM User WHERE UserID = ${userID}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(result);
+  });
+}
+)
 // app.get("/", function (err, res) {
 //   res.sendFile(__dirname + "/index.html");
 // });

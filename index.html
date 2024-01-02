@@ -23,7 +23,7 @@
       </button>
     </div>
     <div class="main">
-      <div><h1>Welcome to Brisky!</h1></div>
+      <div><h1 id="welcomeText">Welcome to Brisky!</h1></div>
       <div class="mainBox">
         <h2>How may we help you today?</h2>
         <button onclick="location.href='Branch'" class="button1">
@@ -43,7 +43,26 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var userID = sessionStorage.getItem("USER_ID");
-        console.log(userID);
+        //Block for displaying first name on homepage!
+        var name;
+        fetch("/getName", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ userID }),
+          })
+          .then(response => {
+            
+            return response.json();
+          })
+          .then(data => {
+            name=data[0].FirstName;
+            document.getElementById("welcomeText").innerText=`Welcome to Brisky, ${name}!`
+          })
+        //End of first name block!
+        
+        //The following block should be copied into all pages!!!
         if (userID == null) {
           document
             .getElementById("acctBtn")
@@ -63,6 +82,7 @@
               location.href = "account";
             });
           document.getElementById("loginBtn").innerHTML = "<p>Log Out</p>";
+          
           document
             .getElementById("loginBtn")
             .addEventListener("click", function () {
