@@ -275,7 +275,6 @@ app.post("/addAddress", (req, res) => {
     if (err) {
       throw err;
     }
-    res.send(JSON.stringify(result));
   });
   console.log("Address added!");
   res.sendFile(__dirname + "/account.html");
@@ -290,6 +289,17 @@ app.post("/delAddress", (req, res) => {
     }
   });
   console.log("Address deleted!");
+  res.sendFile(__dirname + "/account.html");
+});
+app.post("/editAddress", (req, res) => {
+  const add = req.body.address;
+  let sql = `UPDATE Address SET line1="${add.line1}", line2="${add.line2}", region="${add.region}", city="${add.city}" WHERE id=${add.id}`;
+  let query = db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+  });
+  console.log("Address edited!");
   res.sendFile(__dirname + "/account.html");
 });
 

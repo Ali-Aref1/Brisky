@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   pMethodForm.addEventListener("submit", function (event) {
-    if(!edit){
     event.preventDefault();
+    if(!edit){
     let cardName = document.forms["pMethodForm"]["cardName"].value;
     let cardNum = document.forms["pMethodForm"]["cardNum"].value;
     let expMonth = document.forms["pMethodForm"]["expMonth"].value;
@@ -83,7 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     }
     else{
-      event.preventDefault();
       let cardName = document.forms["pMethodForm"]["cardName"].value;
       let cardNum = document.forms["pMethodForm"]["cardNum"].value;
       let expMonth = document.forms["pMethodForm"]["expMonth"].value;
@@ -101,18 +100,33 @@ document.addEventListener("DOMContentLoaded", function () {
     
   });
   addressForm.addEventListener("submit", function (event) {
+    if(!edit){
     event.preventDefault();
     let line1 = document.forms["addressForm"]["line1"].value;
     let line2 = document.forms["addressForm"]["line2"].value;
     let region = document.forms["addressForm"]["region"].value;
     let city = document.forms["addressForm"]["city"].value;
-    let add = new Address(line1, line2, region, city, 1);
-    addAddress(add);
+    addAddress(new Address(line1, line2, region, city, 1));
+    }
+    else{
+      event.preventDefault();
+      let line1 = document.forms["addressForm"]["line1"].value;
+      let line2 = document.forms["addressForm"]["line2"].value;
+      let region = document.forms["addressForm"]["region"].value;
+      let city = document.forms["addressForm"]["city"].value;
+      valToEdit.edit(line1, line2, region, city);
+      editAddress(valToEdit);
+      edit=false;
+      valToEdit=null;
+    }
     toggleModal();
     pMethodForm.reset();
     addressForm.reset();
   });
-  Array.from(document.getElementsByClassName("cancelbutton")).forEach(
+  
+
+
+  Array.from(document.getElementsByClassName("cancelbutton")).forEach( //Adds listeners to all the cancel buttons in each modal form
     (button) => {
       button.addEventListener("click", function (event) {
         toggleModal();
@@ -169,6 +183,13 @@ class Address {
     deleteAddress(this);
     delete this;
   }
+  edit(line1, line2, region, city){
+    this.line1 = line1;
+    this.line2 = line2;
+    this.region = region;
+    this.city = city;
+    renderAddressBook();
+  }
 }
 //Maps all the payment methods to a table
 function renderPMethods() {
@@ -188,7 +209,7 @@ function renderPMethods() {
     hrow.appendChild(th3);
   }
 
-  paymentMethods.map((method) => {
+  paymentMethods.map((method) => { 
     const tableRow = document.createElement("tr");
     pmtable.appendChild(tableRow);
     const t1 = document.createElement("td");
@@ -220,7 +241,7 @@ function renderPMethods() {
     t4.classList.add("invisCell");
     t1.style = "width:600px";
     t2.style = "width:150px";
-    t3.style = "width:60px";
+    t3.style = "width:50px";
 
     const deleteBtn = document.createElement("button");
     const trashCan = document.createElement("img");
@@ -249,7 +270,7 @@ function renderPMethods() {
 
   });
 }
-function renderAddressBook() {
+function renderAddressBook() { //Maps all the addresses to a table
   addtable.replaceChildren();
   if (addresses.length != 0) {
     const hrow = document.createElement("tr");
@@ -314,16 +335,20 @@ function renderAddressBook() {
     t5.appendChild(deleteBtn);
     t1.style = "width:200px";
     t2.style = "width:200px";
-    t3.style = "width:60px";
+    t3.style = "width:200px";
+    t4.style = "width:200px";
 
     deleteBtn.addEventListener("click", function () {
       address.delete();
       renderAddressBook();
     });
+    editBtn.addEventListener("click", function () {
+      editAddModal(address);
+    });
   });
 }
 
-function editPmModal(method){
+function editPmModal(method){ //Opens the modal with the payment method info filled in
   edit=true;
   valToEdit=method;
   toggleModal("pMethod");
@@ -333,6 +358,17 @@ function editPmModal(method){
   document.forms["pMethodForm"]["expMonth"].value = method.expiryDate.split("/")[0];
   document.forms["pMethodForm"]["expYear"].value = method.expiryDate.split("/")[1];
   document.forms["pMethodForm"]["cvv"].value = method.cvv;
+  
+}
+function editAddModal(address){ //Opens the modal with the address info filled in
+  edit=true;
+  valToEdit=address;
+  toggleModal("address");
+  modalText.innerText = "Edit Address";
+  document.forms["addressForm"]["line1"].value = address.line1;
+  document.forms["addressForm"]["line2"].value = address.line2;
+  document.forms["addressForm"]["region"].value = address.region;
+  document.forms["addressForm"]["city"].value =  address.city;
   
 }
 
@@ -421,5 +457,15 @@ async function deleteAddress(address) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ address: address.id }),
+  });
+}
+
+async function editAddress(address) {
+  await fetch("http://localhost:3000/editAddress", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({address}),
   });
 }
