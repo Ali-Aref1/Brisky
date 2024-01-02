@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt");
 
 //This is a link to my nodejs file. I have to import it here to use it. ~ Ali
 const accountmgmt = require("./accountmgmt");
@@ -331,10 +332,35 @@ app.post("/SignUpUser", (req, res) => {
 });
 
 app.post("/LoginUser", (req, res) => {
-  const user = req.body;
-
+  const { email, password } = req.body;
   
+
+  let sql = `SELECT * FROM User WHERE Email = "${email}" AND password = "${password}"`;
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+
+    if (result.length > 0) {
+      // Authentication successful
+      const userId = result[0].UserID;
+      console.log(userId);
+      res.send({userId})
+
+      // You can set the user ID in session storage here
+      //sessionStorage.setItem('USER_ID', userId);
+
+      // Redirect to index.html
+     
+    } else {
+      // Authentication failed, return JSON error
+      res.status(401).json({ success: false, message: "Invalid email or password" });
+    }
+  });
 });
+
+
 
 
 // app.get("/", function (err, res) {
