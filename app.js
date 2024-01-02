@@ -151,6 +151,31 @@ app.post("/addPMethodDD", (req, res) => {
   console.log("Payment Method added!");
 });
 
+app.post("/addAddressssD", (req, res) => {
+  try {
+    const add = req.body.address;
+
+    // Use parameterized queries to prevent SQL injection
+    let sql =
+      "INSERT INTO Address (line1, line2, region, city, userID) VALUES (?, ?, ?, ?, 1)";
+    let values = [add.line1, add.line2, add.region, add.city];
+
+    db.query(sql, values, (err, result) => {
+      if (err) {
+        console.error("Error adding address:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+        return;
+      }
+
+      console.log("Address added!");
+      res.status(200).json({ message: "Address added successfully" });
+    });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // the nest get and use
 
 app.use("/assets", express.static("assets"));
@@ -281,7 +306,7 @@ app.post("/addAddress", (req, res) => {
     }
   });
   console.log("Address added!");
-  res.sendFile(__dirname + "/account.html");
+  // res.sendFile(__dirname + "/account.html");
 });
 
 app.post("/delAddress", (req, res) => {
@@ -307,7 +332,6 @@ app.post("/editAddress", (req, res) => {
   res.sendFile(__dirname + "/account.html");
 });
 
-
 // Sign Up & Login
 app.post("/SignUpUser", (req, res) => {
   const user = req.body;
@@ -319,10 +343,10 @@ app.post("/SignUpUser", (req, res) => {
     if (err) {
       throw err;
     }
-    
+
     if (result.affectedRows > 0) {
       // Successfully signed up
-      res.redirect('/Login');
+      res.redirect("/Login");
     } else {
       // if Duplicate email
       res.status(400).json({ success: false, message: "Email already in use" });
@@ -332,10 +356,7 @@ app.post("/SignUpUser", (req, res) => {
 
 app.post("/LoginUser", (req, res) => {
   const user = req.body;
-
-  
 });
-
 
 // app.get("/", function (err, res) {
 //   res.sendFile(__dirname + "/index.html");

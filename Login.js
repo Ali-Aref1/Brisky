@@ -1,27 +1,17 @@
+document.addEventListener("DOMContentLoaded", function () {
+  var loginForm = document.querySelector(".login-box form");
 
+  loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-document.addEventListener('DOMContentLoaded', function () {
-    
-    var loginForm = document.querySelector('.login-box form');
+    window.location.href = "index.html";
+  });
 
-   
-    loginForm.addEventListener('submit', function (event) {
-       
-        event.preventDefault();
+  var forgotPasswordLink = document.querySelector(".login-box a");
 
-       
-        window.location.href = 'index.html';
-    });
+  forgotPasswordLink.addEventListener("click", function (event) {
+    event.preventDefault();
 
-   
-    var forgotPasswordLink = document.querySelector('.login-box a');
-
-    
-    forgotPasswordLink.addEventListener('click', function (event) {
-      
-        event.preventDefault();
-
-        
-        window.location.href = 'forgot-password.html';
-    });
+    window.location.href = "forgot-password.html";
+  });
 });
