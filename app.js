@@ -369,7 +369,6 @@ app.post("/LoginUser", (req, res) => {
     if (result.length > 0) {
       // Authentication successful
       const userId = result[0].UserID;
-      console.log(userId);
       res.send({userId})
 
       // You can set the user ID in session storage here

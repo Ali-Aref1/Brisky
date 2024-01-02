@@ -32,7 +32,9 @@ function LoginUser() {
   })
     .then(response => {
       if (!response.ok) {
+        alert("Invalid email or password");
         throw new Error(`HTTP error! Status: ${response.status}`);
+        
       }
       return response.json(); // Parse the JSON response
     })
