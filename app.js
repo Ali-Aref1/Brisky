@@ -208,6 +208,10 @@ app.get("/Login.js", (err, res) => {
   res.type("application/javascript");
   res.sendFile(__dirname + "/Login.js");
 });
+
+app.get("/Branch", function (err, res) {
+  res.sendFile(__dirname + "/Branch.html");
+});
 //-------------------------------------------------------------//
 
 //Payment method stuff!!!!!//
