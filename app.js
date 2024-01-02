@@ -158,8 +158,8 @@ app.post("/addAddressssD", (req, res) => {
 
     // Use parameterized queries to prevent SQL injection
     let sql =
-      "INSERT INTO Address (line1, line2, region, city, userID) VALUES (?, ?, ?, ?, 1)";
-    let values = [add.line1, add.line2, add.region, add.city];
+      "INSERT INTO Address (line1, line2, region, city, userID) VALUES (?, ?, ?, ?, ?)";
+    let values = [add.line1, add.line2, add.region, add.city, add.userID];
 
     db.query(sql, values, (err, result) => {
       if (err) {
