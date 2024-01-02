@@ -9,6 +9,7 @@ var addtable;
 var edit=false;
 var valToEdit;
 var oldNum;
+const userID = sessionStorage.getItem("USER_ID");
 
 var modalFlag = false;
 
@@ -36,6 +37,7 @@ function toggleModal(action) {
 
 //On DOM load, payment methods and addresses are loaded from memory, and listeners are assigned
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("USER ID IS: " + userID);
   getPMethods();
   getAddresses();
   modal = document.getElementById("modal");

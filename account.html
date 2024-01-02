@@ -13,7 +13,7 @@
         <button class="pagebutton"><p>Account</p></button>
         <button onclick="location.href='Branch'" class="pagebutton"><p>Orders</p></button>
         <a href="/"><img src="assets/logo.png" width="150"></a>
-        <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
+        <button id="logoutBtn" class="pagebutton"><p>Log Out</p></button>
         <button onclick="location.href='SignUp.html'" class="pagebutton"><p>Sign Up</p></button>
         
     </div><br>
@@ -118,6 +118,13 @@
             </form>
         </div>
     </div>
-    
+    <script>
+        document.getElementById("logoutBtn").addEventListener("click", function () {
+            sessionStorage.removeItem("USER_ID");
+            window.alert("Logged out successfully!");
+            location.href="/";
+          });
+        
+      </script>
 </body>
 </html>
