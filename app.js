@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt");
 
 //This is a link to my nodejs file. I have to import it here to use it. ~ Ali
 const accountmgmt = require("./accountmgmt");
@@ -361,7 +362,32 @@ app.post("/SignUpUser", (req, res) => {
 });
 
 app.post("/LoginUser", (req, res) => {
-  const user = req.body;
+  const { email, password } = req.body;
+
+  let sql = `SELECT * FROM User WHERE Email = "${email}" AND password = "${password}"`;
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+
+    if (result.length > 0) {
+      // Authentication successful
+      const userId = result[0].UserID;
+      console.log(userId);
+      res.send({ userId });
+
+      // You can set the user ID in session storage here
+      //sessionStorage.setItem('USER_ID', userId);
+
+      // Redirect to index.html
+    } else {
+      // Authentication failed, return JSON error
+      res
+        .status(401)
+        .json({ success: false, message: "Invalid email or password" });
+    }
+  });
 });
 
 // app.get("/", function (err, res) {
@@ -381,22 +407,23 @@ app.post("/LoginUser", (req, res) => {
 app.get("/TrackOrder.html", function (req, res) {
   res.sendFile(__dirname + "/TrackOrder.html");
 });
-app.get('/user/:UserID/Order', (req, res) => {
+app.get("/user/:UserID/Order", (req, res) => {
   const UserID = req.params.UserID;
 
   // Retrieve orders for the specific user from the database
-  const sql = 'SELECT OrderID, Status, Cost, Count FROM Orders WHERE UserID = ?';
+  const sql =
+    "SELECT OrderID, Status, Cost, Count FROM Orders WHERE UserID = ?";
   db.query(sql, [UserID], (err, results) => {
     if (err) {
-      console.error('Error querying the database:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
+      console.error("Error querying the database:", err);
+      res.status(500).json({ error: "Internal Server Error" });
       return;
     }
 
     if (results.length > 0) {
       res.json({ orders: results });
     } else {
-      res.status(404).json({ error: 'No orders found for the user' });
+      res.status(404).json({ error: "No orders found for the user" });
     }
   });
 });
