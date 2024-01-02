@@ -35,6 +35,7 @@ function toggleModal(action) {
   }
 }
 
+
 //On DOM load, payment methods and addresses are loaded from memory, and listeners are assigned
 document.addEventListener("DOMContentLoaded", function () {
   console.log("USER ID IS: " + userID);
@@ -42,12 +43,46 @@ document.addEventListener("DOMContentLoaded", function () {
   getAddresses();
   modal = document.getElementById("modal");
   modalText = document.getElementById("modalText");
+  accountForm = document.getElementById("accountform");
   pMethodForm = document.getElementById("pMethodForm");
   addressForm = document.getElementById("addressForm");
   pmtable = document.getElementById("paymentMethods");
   addtable = document.getElementById("addressBook");
   renderPMethods();
   renderAddressBook();
+
+  accountForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+  
+    var formData = Object.fromEntries(new FormData(accountForm).entries());
+    formData.userID = userID;
+  
+    console.log(formData);
+  
+    fetch("/changeUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json(); // Parse the JSON response and return it
+    })
+    .then(data => {
+      window.alert(data.message)
+      if(data.success){
+        window.location.reload();
+      }
+    })
+    .catch(error => {
+      console.error('Error during fetch:', error);
+      // Handle error accordingly
+    });
+  });
   document.getElementById("addPMethod").addEventListener("click", function () {
     toggleModal("pMethod");
     edit=false;
@@ -378,7 +413,11 @@ function editAddModal(address){ //Opens the modal with the address info filled i
 
 async function getPMethods(e) {
   const res = await fetch("http://localhost:3000/getPMethod", {
-    method: "GET",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userID }),
   });
   const data = await res.json();
   console.log("Payment Methods:");
@@ -409,7 +448,7 @@ async function addPMethod(method) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ method }),
+    body: JSON.stringify({ method, userID }),
   });
 }
 async function editPMethod(method) {
@@ -424,7 +463,11 @@ async function editPMethod(method) {
 
 async function getAddresses(e) {
   const res = await fetch("http://localhost:3000/getAddress", {
-    method: "GET",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userID }),
   });
   const data = await res.json();
   console.log("Addresses:");
@@ -446,7 +489,7 @@ async function addAddress(address) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ address }),
+    body: JSON.stringify({ address, userID }),
   });
   const data = await res.json();
   address.id = data.insertId;

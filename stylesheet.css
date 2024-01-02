@@ -73,14 +73,14 @@ h2{
 .button1:hover{
     background-color: #6A0000;
 }
-.accountform{
+#accountform{
     display:flex;
     flex-direction: column;
     gap:10px;
     align-self:self-start;
     width:100%;
 }
-.accountform input{
+#accountform input{
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;

@@ -20,15 +20,15 @@
     <div class="main">
         <div class="mainBox">
             <h2>Account Management</h2>
-            You can modify all you account details here:<br><br>
+            You can modify all your account details here:<br><br>
             
-            <form class="accountform" action="post">
+            <form id="accountform">
                 <div class="nameWrapper"><input type="text" placeholder="First Name" name="first_name" required pattern="[A-Z][a-z]*">
               
                     <input type="text" placeholder="Last Name" name="last_name" required pattern="[A-Z][a-z]*"></div>
                 
                 
-                <input type="email" placeholder="E-mail" name="email" required pattern="[a-zA-Z0-9._\%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" >
+                <input type="email" placeholder="E-mail" name="email" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" >
                
                 <div class="phone-number-wrapper">
                     <span class="country-code">+20</span>

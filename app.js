@@ -247,8 +247,8 @@ app.get("/Product", function (err, res) {
 //-------------------------------------------------------------//
 
 //Payment method stuff!!!!!//
-app.get("/getPMethod", (req, res) => {
-  let sql = "SELECT * FROM PaymentMethod";
+app.post("/getPMethod", (req, res) => {
+  let sql = `SELECT * FROM PaymentMethod WHERE userID = ${req.body.userID}`;
   let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -270,7 +270,8 @@ app.post("/delPMethod", (req, res) => {
 });
 app.post("/addPMethod", (req, res) => {
   const method = req.body.method;
-  let sql = `INSERT INTO PaymentMethod VALUES ("${method.name}", ${method.num}, "${method.expiryDate}", ${method.cvv}, 1)`;
+  const userID = req.body.userID;
+  let sql = `INSERT INTO PaymentMethod VALUES ("${method.name}", ${method.num}, "${method.expiryDate}", ${method.cvv}, ${userID})`;
   let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -293,8 +294,8 @@ app.post("/editPMethod", (req, res) => {
 });
 
 //---------------------------------------------------------------------------------------------------------------//
-app.get("/getAddress", (req, res) => {
-  let sql = "SELECT * FROM Address";
+app.post("/getAddress", (req, res) => {
+  let sql = `SELECT * FROM Address WHERE userID = ${req.body.userID}`;
   let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -306,7 +307,8 @@ app.get("/getAddress", (req, res) => {
 
 app.post("/addAddress", (req, res) => {
   const add = req.body.address;
-  let sql = `INSERT INTO Address (line1,line2,region,city,userID) VALUES ("${add.line1}","${add.line2}","${add.region}","${add.city}", 1)`;
+  const userID = req.body.userID;
+  let sql = `INSERT INTO Address (line1,line2,region,city,userID) VALUES ("${add.line1}","${add.line2}","${add.region}","${add.city}", ${userID})`;
   let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -386,6 +388,28 @@ app.post("/LoginUser", (req, res) => {
       res
         .status(401)
         .json({ success: false, message: "Invalid email or password" });
+    }
+  });
+});
+
+app.post("/changeUser", (req, res) => {
+  const {first_name, last_name, email, phone_number, date_of_birth, userID} = req.body;
+  let sql = `SELECT * FROM User WHERE Email = "${email}"`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    if(result.length>0){
+      res.send({success: false, message: "Email already in use"});
+    }
+    else{
+      sql = `UPDATE User SET FirstName="${first_name}", LastName="${last_name}", Email="${email}", phone_no="+20${phone_number}", DOB="${date_of_birth}" WHERE UserID=${userID}`;
+      db.query(sql, (err, result) => {
+        if (err) {
+          throw err;
+        }
+        res.send({success: true, message: "User updated successfully"});
+      });
     }
   });
 });
