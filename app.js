@@ -243,6 +243,18 @@ app.post("/addPMethod", (req, res) => {
   console.log("Payment Method added!");
   res.sendFile(__dirname + "/account.html");
 });
+app.post("/editPMethod", (req, res) => {
+  const method = req.body.method;
+  const oldNum = req.body.oldNum;
+  let sql = `UPDATE PaymentMethod SET name="${method.name}", num=${method.num}, expiryDate="${method.expiryDate}", cvv=${method.cvv} WHERE num=${oldNum}`;
+  let query = db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+  });
+  console.log("Payment Method edited!");
+  res.sendFile(__dirname + "/account.html");
+});
 
 //---------------------------------------------------------------------------------------------------------------//
 app.get("/getAddress", (req, res) => {
@@ -302,6 +314,12 @@ app.post("/SignUpUser", (req, res) => {
       res.status(400).json({ success: false, message: "Email already in use" });
     }
   });
+});
+
+app.post("/LoginUser", (req, res) => {
+  const user = req.body;
+
+  
 });
 
 

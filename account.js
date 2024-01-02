@@ -6,6 +6,9 @@ var pMethodForm;
 var addressForm;
 var pmtable;
 var addtable;
+var edit=false;
+var valToEdit;
+var oldNum;
 
 var modalFlag = false;
 
@@ -45,9 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
   renderAddressBook();
   document.getElementById("addPMethod").addEventListener("click", function () {
     toggleModal("pMethod");
+    edit=false;
+    valToEdit=null;
   });
   document.getElementById("addAddress").addEventListener("click", function () {
     toggleModal("address");
+    edit=false;
+    valToEdit=null;
   });
   document.getElementById("modal").addEventListener("click", function (event) {
     var modalDiv = document.getElementById("modalDiv1");
@@ -62,7 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
       addressForm.reset();
     }
   });
+
   pMethodForm.addEventListener("submit", function (event) {
+    if(!edit){
     event.preventDefault();
     let cardName = document.forms["pMethodForm"]["cardName"].value;
     let cardNum = document.forms["pMethodForm"]["cardNum"].value;
@@ -72,9 +81,24 @@ document.addEventListener("DOMContentLoaded", function () {
     addPMethod(
       new PaymentMethod(cardName, cardNum, `${expMonth}/${expYear}`, cvv, 1)
     );
+    }
+    else{
+      event.preventDefault();
+      let cardName = document.forms["pMethodForm"]["cardName"].value;
+      let cardNum = document.forms["pMethodForm"]["cardNum"].value;
+      let expMonth = document.forms["pMethodForm"]["expMonth"].value;
+      let expYear = document.forms["pMethodForm"]["expYear"].value;
+      let cvv = document.forms["pMethodForm"]["cvv"].value;
+      oldNum=valToEdit.num;
+      valToEdit.edit(cardName, cardNum, `${expMonth}/${expYear}`, cvv);
+      editPMethod(valToEdit);
+      edit=false;
+      valToEdit=null;
+    }
     toggleModal();
     pMethodForm.reset();
     addressForm.reset();
+    
   });
   addressForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -117,6 +141,13 @@ class PaymentMethod {
     }
     deletePMethod(this);
     delete this;
+  }
+  edit(name, num, expiryDate, cvv){
+    this.name = name;
+    this.num = num;
+    this.expiryDate = expiryDate;
+    this.cvv = cvv;
+    renderPMethods();
   }
 }
 class Address {
@@ -212,6 +243,10 @@ function renderPMethods() {
       method.delete();
       renderPMethods();
     });
+    editBtn.addEventListener("click", function () {
+      editPmModal(method);
+    });
+
   });
 }
 function renderAddressBook() {
@@ -288,6 +323,19 @@ function renderAddressBook() {
   });
 }
 
+function editPmModal(method){
+  edit=true;
+  valToEdit=method;
+  toggleModal("pMethod");
+  modalText.innerText = "Edit Payment Method";
+  document.forms["pMethodForm"]["cardName"].value = method.name;
+  document.forms["pMethodForm"]["cardNum"].value = method.num;
+  document.forms["pMethodForm"]["expMonth"].value = method.expiryDate.split("/")[0];
+  document.forms["pMethodForm"]["expYear"].value = method.expiryDate.split("/")[1];
+  document.forms["pMethodForm"]["cvv"].value = method.cvv;
+  
+}
+
 //Backend interactions:
 
 async function getPMethods(e) {
@@ -326,6 +374,16 @@ async function addPMethod(method) {
     body: JSON.stringify({ method }),
   });
 }
+async function editPMethod(method) {
+  await fetch("http://localhost:3000/editPMethod", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ method, oldNum }),
+  });
+}
+
 async function getAddresses(e) {
   const res = await fetch("http://localhost:3000/getAddress", {
     method: "GET",
