@@ -158,8 +158,8 @@ app.post("/addAddressssD", (req, res) => {
 
     // Use parameterized queries to prevent SQL injection
     let sql =
-      "INSERT INTO Address (line1, line2, region, city, userID) VALUES (?, ?, ?, ?, 1)";
-    let values = [add.line1, add.line2, add.region, add.city];
+      "INSERT INTO Address (line1, line2, region, city, userID) VALUES (?, ?, ?, ?, ?)";
+    let values = [add.line1, add.line2, add.region, add.city, add.userID];
 
     db.query(sql, values, (err, result) => {
       if (err) {
@@ -189,6 +189,9 @@ app.get("/item.html", function (err, res) {
 });
 app.get("/checkout.html", function (req, res) {
   res.sendFile(__dirname + "/checkout.html");
+});
+app.get("/confirmation.html", function (req, res) {
+  res.sendFile(__dirname + "/confirmation.html");
 });
 app.get("/payment.html", function (req, res) {
   res.sendFile(__dirname + "/payment.html");
@@ -227,6 +230,9 @@ app.get("/SignUp.js", (err, res) => {
   res.type("application/javascript");
   res.sendFile(__dirname + "/SignUp.js");
 });
+app.get("/TrackOrder", (err, res) => {
+  res.sendFile(__dirname + "/TrackOrder.html");
+});
 app.get("/Login", (err, res) => {
   res.sendFile(__dirname + "/Login.html");
 });
@@ -234,7 +240,6 @@ app.get("/Login.js", (err, res) => {
   res.type("application/javascript");
   res.sendFile(__dirname + "/Login.js");
 });
-
 app.get("/Branch", function (err, res) {
   res.sendFile(__dirname + "/Branch.html");
 });
@@ -462,12 +467,10 @@ app.get("/getBranch", (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
       return;
     }
-    
+
     // Extract branch names from the results
 
     // Send the array of branch names as JSON
     res.json(results);
   });
 });
-
-

@@ -7,11 +7,12 @@
   <link rel="stylesheet" type="text/css" href="styleee.css" />
 </head>
 <script>
+  const UserID=sessionStorage.getItem("USER_ID");
   document.addEventListener('DOMContentLoaded', () => {
-    const UserID = 3; // Replace with the actual user ID
+    
 
     // Fetch orders for the user from the server
-    fetch(`/user/3/Order`)
+    fetch(`/user/${UserID}/Order`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

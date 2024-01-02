@@ -32,7 +32,9 @@ class Order {
 }
 
 function getUserId() {
-  return 3; // untill the login for now
+  tempid = sessionStorage.getItem("USER_ID");
+  //console.log("userid is" + tempid);
+  return tempid; // untill the login for now
 }
 
 //// want to write the data like the total pri ce`(*>﹏<*)′
@@ -118,7 +120,7 @@ async function BUY() {
       totalcount,
       userId,
       "6", // Promo code (You may include this if applicable)
-      47 // Use the ID of the added address
+      94 // Use the ID of the added address
     );
     console.log(order.AddressId);
     console.log(order.AddressId);
@@ -129,7 +131,7 @@ async function BUY() {
     await addAddress(address);
 
     // For demonstration purposes, open a new page
-    window.open("confirmation.html", "_blank");
+    window.open("/confirmation.html", "_blank");
   } catch (error) {
     console.error("Error adding address, payment method, or order:", error);
     alert("An error occurred during the checkout process. Please try again.");
