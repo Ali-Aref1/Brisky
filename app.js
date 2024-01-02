@@ -356,7 +356,6 @@ app.post("/SignUpUser", (req, res) => {
 });
 
 app.post("/LoginUser", (req, res) => {
-<<<<<<< HEAD
   const { email, password } = req.body;
   
 
@@ -388,11 +387,6 @@ app.post("/LoginUser", (req, res) => {
 
 
 
-=======
-  const user = req.body;
-});
-
->>>>>>> ac9ece690aed157e996cdea94bf0605a2ede5248
 // app.get("/", function (err, res) {
 //   res.sendFile(__dirname + "/index.html");
 // });
