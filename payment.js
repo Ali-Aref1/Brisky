@@ -129,7 +129,7 @@ async function BUY() {
     await addAddress(address);
 
     // For demonstration purposes, open a new page
-    window.open("confirmation.html", "_blank");
+    window.open("/confirmation.html", "_blank");
   } catch (error) {
     console.error("Error adding address, payment method, or order:", error);
     alert("An error occurred during the checkout process. Please try again.");

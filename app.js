@@ -190,6 +190,9 @@ app.get("/item.html", function (err, res) {
 app.get("/checkout.html", function (req, res) {
   res.sendFile(__dirname + "/checkout.html");
 });
+app.get("/confirmation.html", function (req, res) {
+  res.sendFile(__dirname + "/confirmation.html");
+});
 app.get("/payment.html", function (req, res) {
   res.sendFile(__dirname + "/payment.html");
 });
@@ -438,12 +441,10 @@ app.get("/getBranch", (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
       return;
     }
-    
+
     // Extract branch names from the results
 
     // Send the array of branch names as JSON
     res.json(results);
   });
 });
-
-
