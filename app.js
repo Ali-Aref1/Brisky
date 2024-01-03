@@ -181,6 +181,9 @@ app.post("/addAddressssD", (req, res) => {
 
 app.use("/assets", express.static("assets"));
 
+app.get("/index.html", (err, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
 app.get("/Products", function (err, res) {
   res.sendFile(__dirname + "/Products.html");
 });
@@ -224,6 +227,9 @@ app.get("/joe.css", function (req, res) {
   res.sendFile(__dirname + "/joe.css");
 });
 app.get("/SignUp", (err, res) => {
+  res.sendFile(__dirname + "/SignUp.html");
+});
+app.get("/SignUp.html", (err, res) => {
   res.sendFile(__dirname + "/SignUp.html");
 });
 app.get("/SignUp.js", (err, res) => {
