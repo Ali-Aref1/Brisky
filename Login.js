@@ -20,6 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+function setCookie(name, value, days) {
+  var expires = '';
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = '; expires=' + date.toUTCString();
+  }
+  document.cookie = name + '=' + value + expires + '; path=/';
+}
+
 function LoginUser() {
   // Assuming formData is defined elsewhere in your code
 
@@ -34,7 +44,6 @@ function LoginUser() {
       if (!response.ok) {
         alert("Invalid email or password");
         throw new Error(`HTTP error! Status: ${response.status}`);
-        
       }
       return response.json(); // Parse the JSON response
     })
@@ -43,7 +52,10 @@ function LoginUser() {
       console.log(userId);
       sessionStorage.setItem('USER_ID', userId);
 
-      // Redirect after setting sessionStorage
+      // Set a cookie named 'user_id' with the userId value, expires in 7 days
+      setCookie('user_id', userId, 7);
+
+      // Redirect after setting sessionStorage and cookies
       window.location.href = '/';
     })
     .catch(error => {

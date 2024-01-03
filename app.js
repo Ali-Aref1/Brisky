@@ -139,6 +139,7 @@ app.post("/getOrder", (req, res) => {
   
 }
 )
+
 app.post("/addAddressID", (req, res) => {
   const add = req.body.address;
   let sql = `SELECT FROM Address WHERE id = ${add}`;
@@ -199,7 +200,6 @@ app.use("/assets", express.static("assets"));
 app.get("/index.html", (err, res) => {
   res.sendFile(__dirname + "/index.html");
 });
-
 app.get("/Products", function (err, res) {
   res.sendFile(__dirname + "/Products.html");
 });
