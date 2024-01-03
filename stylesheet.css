@@ -156,16 +156,16 @@ td{
     display:flex;
     gap: 5px;
 }
-.orderHistory{
+#orderHistory{
     border-collapse:collapse;
     width:80%;
     text-wrap: nowrap;
 }
-.orderHistory th{
+#orderHistory th{
     border:1px solid black;
     padding:5px;
 }
-.orderHistory td{
+#orderHistory td{
     border:1px solid black;
     padding:5px;
 }
@@ -197,7 +197,6 @@ td{
 }
 .invisCell{
     border:none !important;
-    width:120px;
     display:flex;
     align-items: center;
     justify-content: center;

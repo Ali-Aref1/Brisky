@@ -22,14 +22,15 @@
           <p>Sign Up</p>
         </button>
       </div><br>
-    <div class="main"><div class="mainBox">
+    <div class="main"><div class="mainBox" id="mainbox">
         
         <h2>Order History</h2>
-        <table class="orderHistory">
-            <tr><th>ID</th><th>Branch</th><th>Total</th><th>Status</th></tr>
-            <tr><td>123</td><td>Branch 1</td><td>250.00</td><td>Delivered</td"><td class="addtocart"><button class="cartbutton"><img src="assets/add-to-cart.png" style="width:80%"></button></td></tr>
+        <table id="orderHistory">
         </table>
+        
     </div></div>
+    
+    <script src="History.js"></script>
     <script>
         var userID = sessionStorage.getItem("USER_ID");
                 if (userID == null) {

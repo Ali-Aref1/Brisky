@@ -54,6 +54,10 @@ app.get("/account.js", (err, res) => {
 app.get("/History", (err, res) => {
   res.sendFile(__dirname + "/History.html");
 });
+app.get("/History.js", (err, res) => {
+  res.type("application/javascript");
+  res.sendFile(__dirname + "/History.js");
+});
 
 // now lets insert on our table try
 app.get("/addpost1", (req, res) => {
@@ -123,7 +127,18 @@ app.post("/addOrder", (req, res) => {
   });
   console.log("Order added!");
 });
-
+app.post("/getOrder", (req, res) => {
+  let userID= req.body.userID;
+  let sql = `SELECT * FROM Orders WHERE UserID = ${userID}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(JSON.stringify(result));
+  });
+  
+}
+)
 app.post("/addAddressID", (req, res) => {
   const add = req.body.address;
   let sql = `SELECT FROM Address WHERE id = ${add}`;
@@ -184,6 +199,7 @@ app.use("/assets", express.static("assets"));
 app.get("/index.html", (err, res) => {
   res.sendFile(__dirname + "/index.html");
 });
+
 app.get("/Products", function (err, res) {
   res.sendFile(__dirname + "/Products.html");
 });
