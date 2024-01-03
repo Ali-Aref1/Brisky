@@ -8,12 +8,20 @@
 </head>
 <body>
     <div class="topbar">
-        <button class="pagebutton" onclick="location.href='account'"><p>Account</p></button>
-        <button onclick="location.href='Branch.html'" class="pagebutton"><p>Orders</p></button>
-        <a href="/"><img src="assets/logo.png" width="150"></a>
-        <button onclick="location.href='Login.html'" class="pagebutton"><p>Login</p></button>
-        <button onclick="location.href='SignUp.html'" class="pagebutton"><p>Sign Up</p></button>
-    </div><br>
+        <button id="acctBtn" class="pagebutton">
+          <p>Account</p>
+        </button>
+        <button onclick="location.href='Branch'" class="pagebutton">
+          <p>Orders</p>
+        </button>
+        <a href="/"><img src="assets/logo.png" width="150" /></a>
+        <button id="loginBtn" class="pagebutton">
+          <p>Login</p>
+        </button>
+        <button onclick="location.href='SignUp'" class="pagebutton">
+          <p>Sign Up</p>
+        </button>
+      </div><br>
     <div class="main"><div class="mainBox">
         
         <h2>Order History</h2>
@@ -22,6 +30,36 @@
             <tr><td>123</td><td>Branch 1</td><td>250.00</td><td>Delivered</td"><td class="addtocart"><button class="cartbutton"><img src="assets/add-to-cart.png" style="width:80%"></button></td></tr>
         </table>
     </div></div>
-    
+    <script>
+        var userID = sessionStorage.getItem("USER_ID");
+                if (userID == null) {
+                  document
+                    .getElementById("acctBtn")
+                    .addEventListener("click", function () {
+                      location.href = "Login";
+                    });
+                  document.getElementById("loginBtn").innerHTML = "<p>Login</p>";
+                  document
+                    .getElementById("loginBtn")
+                    .addEventListener("click", function () {
+                      location.href = "Login";
+                    });
+                } else {
+                  document
+                    .getElementById("acctBtn")
+                    .addEventListener("click", function () {
+                      location.href = "account";
+                    });
+                  document.getElementById("loginBtn").innerHTML = "<p>Log Out</p>";
+                  
+                  document
+                    .getElementById("loginBtn")
+                    .addEventListener("click", function () {
+                      sessionStorage.removeItem("USER_ID");
+                      window.alert("Logged out successfully!");
+                      location.href = "/";
+                    });
+                }
+        </script>
 </body>
 </html>
