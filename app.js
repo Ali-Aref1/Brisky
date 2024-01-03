@@ -128,7 +128,7 @@ app.post("/addOrder", (req, res) => {
   console.log("Order added!");
 });
 app.post("/getOrder", (req, res) => {
-  let userID= req.body.userID;
+  let userID = req.body.userID;
   let sql = `SELECT * FROM Orders WHERE UserID = ${userID}`;
   db.query(sql, (err, result) => {
     if (err) {
@@ -136,9 +136,7 @@ app.post("/getOrder", (req, res) => {
     }
     res.send(JSON.stringify(result));
   });
-  
-}
-)
+});
 
 app.post("/addAddressID", (req, res) => {
   const add = req.body.address;
@@ -420,22 +418,22 @@ app.post("/LoginUser", (req, res) => {
 });
 
 app.post("/changeUser", (req, res) => {
-  const {first_name, last_name, email, phone_number, date_of_birth, userID} = req.body;
+  const { first_name, last_name, email, phone_number, date_of_birth, userID } =
+    req.body;
   let sql = `SELECT * FROM User WHERE Email = "${email}"`;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
     }
-    if(result.length>0){
-      res.send({success: false, message: "Email already in use"});
-    }
-    else{
+    if (result.length > 0) {
+      res.send({ success: false, message: "Email already in use" });
+    } else {
       sql = `UPDATE User SET FirstName="${first_name}", LastName="${last_name}", Email="${email}", phone_no="+20${phone_number}", DOB="${date_of_birth}" WHERE UserID=${userID}`;
       db.query(sql, (err, result) => {
         if (err) {
           throw err;
         }
-        res.send({success: true, message: "User updated successfully"});
+        res.send({ success: true, message: "User updated successfully" });
       });
     }
   });
@@ -450,8 +448,7 @@ app.post("/getName", (req, res) => {
     }
     res.send(result);
   });
-}
-)
+});
 // app.get("/", function (err, res) {
 //   res.sendFile(__dirname + "/index.html");
 // });
