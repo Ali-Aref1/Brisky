@@ -30,6 +30,7 @@ class Order {
     this.AddressId = AddressId;
   }
 }
+var items=[];
 
 function getUserId() {
   tempid = sessionStorage.getItem("USER_ID");
@@ -39,6 +40,7 @@ function getUserId() {
 
 //// want to write the data like the total pri ce`(*>﹏<*)′
 document.addEventListener("DOMContentLoaded", function () {
+  items=getCount(JSON.parse(sessionStorage.getItem("cart")));
   var totalPrice = sessionStorage.getItem("totalPrice");
   var totalcount = sessionStorage.getItem("totalCount");
 
@@ -113,6 +115,10 @@ async function BUY() {
     console.log("enterd order");
     console.log("enterd order");
     // Add order
+    
+    console.log(address);
+    await addPMethod(paymentMethodObj);
+    await addAddress(address);
     const order = new Order(
       3,
       "Pending",
@@ -120,15 +126,12 @@ async function BUY() {
       totalcount,
       userId,
       "6", // Promo code (You may include this if applicable)
-      1 // Use the ID of the added address
+      address.AddressID // Use the ID of the added address
     );
-    console.log(order.AddressId);
-    console.log(order.AddressId);
-
+    order.PaymentMethod=paymentMethodObj.num;
     await addOrder(order);
-
-    await addPMethod(paymentMethodObj);
-    await addAddress(address);
+    await addOrderItems(items);
+    
 
     // For demonstration purposes, open a new page
     window.open("/confirmation.html", "_blank");
@@ -229,7 +232,9 @@ async function addAddress(address) {
     }
 
     const data = await response.json();
-    address.id = data.insertId;
+    console.log(data);
+    address.AddressID = data.insertId;
+    console.log(address);
 
     console.log("Address added successfully!");
   } catch (error) {
@@ -265,4 +270,38 @@ function showSuccessNotification() {
   userID=getUserId();
   sessionStorage.clear();
   sessionStorage.setItem("USER_ID",userID);
+}
+
+function getCount(jsonArray){
+// Create an object to store merged items using ItemID as the key
+const mergedItemsMap = {};
+
+// Iterate through the items array
+items.forEach(item => {
+  // Check if an item with the same ItemID already exists in the mergedItemsMap
+  if (mergedItemsMap.hasOwnProperty(item.ItemID)) {
+    // Increment the count attribute
+    mergedItemsMap[item.ItemID].count++;
+  } else {
+    // If it doesn't exist, create a new entry with count set to 1
+    mergedItemsMap[item.ItemID] = { ...item, count: 1 };
+  }
+});
+
+// Convert the values of the mergedItemsMap back to an array
+const mergedItemsArray = Object.values(mergedItemsMap);
+
+return mergedItemsArray;
+}
+
+async function addOrderItems(orderItems) {
+  orderItems.forEach(item=>{
+    fetch("http://localhost:3000/addOrderItem", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ item }),
+    });
+  })
 }

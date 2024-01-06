@@ -376,6 +376,7 @@ function renderAddressBook() { //Maps all the addresses to a table
     t4.style = "width:200px";
 
     deleteBtn.addEventListener("click", function () {
+      console.log(address);
       address.delete();
       renderAddressBook();
     });
@@ -479,7 +480,7 @@ async function getAddresses(e) {
       address.region,
       address.city
     );
-    add.id = address.id;
+    add.id = address.AddressID;
   });
 }
 

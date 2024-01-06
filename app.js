@@ -117,7 +117,7 @@ app.get("/getproducts", (req, res) => {
 
 app.post("/addOrder", (req, res) => {
   const order = req.body.order;
-  let sql = `INSERT INTO Orders (Status, Cost, Count, UserId, PromoCode, AddressId) VALUES ("${order.Status}", ${order.Cost}, ${order.Count}, ${order.UserId}, "${order.PromoCode}", ${order.AddressId})`;
+  let sql = `INSERT INTO Orders (Status, Cost, Count, UserId, PromoCode, AddressId,PaymentMethod) VALUES ("${order.Status}", ${order.Cost}, ${order.Count}, ${order.UserId}, "${order.PromoCode}", ${order.AddressId}, ${order.PaymentMethod})`;
 
   db.query(sql, (err, result) => {
     if (err) {
@@ -136,6 +136,19 @@ app.post("/getOrder", (req, res) => {
     }
     res.send(JSON.stringify(result));
   });
+});
+app.post("/addOrderItem", (req, res) => {
+  // const order = req.body.order;
+  // let sql = `INSERT INTO OrderHasItem (OrderID, ItemID, Count) VALUES (${order.OrderID}, ${order.ItemID}, 1)`;
+
+  // db.query(sql, (err, result) => {
+  //   if (err) {
+  //     throw err;
+  //   }
+  //   res.send(JSON.stringify(result));
+  // });
+  // console.log("Order added!");
+  console.log(req.body);
 });
 
 app.post("/addAddressID", (req, res) => {
@@ -183,7 +196,7 @@ app.post("/addAddressssD", (req, res) => {
       }
 
       console.log("Address added!");
-      res.status(200).json({ message: "Address added successfully" });
+      res.send(result);
     });
   } catch (error) {
     console.error("Unexpected error:", error);
@@ -345,7 +358,7 @@ app.post("/addAddress", (req, res) => {
 
 app.post("/delAddress", (req, res) => {
   const add = req.body.address;
-  let sql = `DELETE FROM Address WHERE id = ${add}`;
+  let sql = `DELETE FROM Address WHERE AddressID = ${add}`;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
