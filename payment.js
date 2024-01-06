@@ -211,6 +211,7 @@ async function addOrder(order) {
     body: JSON.stringify({ order }),
   });
   console.log("succfully");
+  showSuccessNotification();
 }
 
 async function addAddress(address) {
@@ -260,4 +261,8 @@ async function addPMethod(method) {
 
 function showSuccessNotification() {
   alert("Order completed successfully!");
+  window.location.href="/";
+  userID=getUserId();
+  sessionStorage.clear();
+  sessionStorage.setItem("USER_ID",userID);
 }
