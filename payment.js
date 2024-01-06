@@ -114,13 +114,13 @@ async function BUY() {
     console.log("enterd order");
     // Add order
     const order = new Order(
-      2,
+      3,
       "Pending",
       totalPrice,
       totalcount,
       userId,
       "6", // Promo code (You may include this if applicable)
-      94 // Use the ID of the added address
+      1 // Use the ID of the added address
     );
     console.log(order.AddressId);
     console.log(order.AddressId);
