@@ -21,7 +21,7 @@ app.listen("3000", () => {
 //create coinnection
 
 const db = mysql.createConnection({
-  host: "sql11.freesqldatabase.com",
+  host: "db4free.net",
   user: "sql11673787",
   password: "KIxY3Uv7ft",
   database: "sql11673787",
