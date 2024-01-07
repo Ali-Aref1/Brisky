@@ -125,6 +125,7 @@ app.post("/addOrder", (req, res) => {
     }
     res.send(JSON.stringify(result));
   });
+  
   console.log("Order added!");
 });
 app.post("/getOrder", (req, res) => {
@@ -138,22 +139,23 @@ app.post("/getOrder", (req, res) => {
   });
 });
 app.post("/addOrderItem", (req, res) => {
-  // const order = req.body.order;
-  // let sql = `INSERT INTO OrderHasItem (OrderID, ItemID, Count) VALUES (${order.OrderID}, ${order.ItemID}, 1)`;
+  const id=req.body.orderId;
+  const item = req.body.item;
+  let sql = `INSERT INTO OrderHasItem (OrderID, ItemID, Count) VALUES (${id}, ${item.ItemID}, ${item.count})`;
 
-  // db.query(sql, (err, result) => {
-  //   if (err) {
-  //     throw err;
-  //   }
-  //   res.send(JSON.stringify(result));
-  // });
-  // console.log("Order added!");
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    res.send(JSON.stringify(result));
+  });
   console.log(req.body);
+
 });
 
 app.post("/addAddressID", (req, res) => {
   const add = req.body.address;
-  let sql = `SELECT FROM Address WHERE id = ${add}`;
+  let sql = `SELECT FROM Address WHERE AddressID = ${add}`;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
@@ -369,7 +371,7 @@ app.post("/delAddress", (req, res) => {
 });
 app.post("/editAddress", (req, res) => {
   const add = req.body.address;
-  let sql = `UPDATE Address SET line1="${add.line1}", line2="${add.line2}", region="${add.region}", city="${add.city}" WHERE id=${add.id}`;
+  let sql = `UPDATE Address SET line1="${add.line1}", line2="${add.line2}", region="${add.region}", city="${add.city}" WHERE AddressID=${add.id}`;
   let query = db.query(sql, (err, result) => {
     if (err) {
       throw err;

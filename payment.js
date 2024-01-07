@@ -31,16 +31,20 @@ class Order {
   }
 }
 var items=[];
+var orderId;
 
 function getUserId() {
   tempid = sessionStorage.getItem("USER_ID");
   //console.log("userid is" + tempid);
   return tempid; // untill the login for now
 }
+var userID=getUserId();
+console.log(userID);
 
 //// want to write the data like the total pri ce`(*>﹏<*)′
 document.addEventListener("DOMContentLoaded", function () {
   items=getCount(JSON.parse(sessionStorage.getItem("cart")));
+  console.log(items);
   var totalPrice = sessionStorage.getItem("totalPrice");
   var totalcount = sessionStorage.getItem("totalCount");
 
@@ -119,7 +123,7 @@ async function BUY() {
     console.log(address);
     await addPMethod(paymentMethodObj);
     await addAddress(address);
-    const order = new Order(
+    order = new Order(
       3,
       "Pending",
       totalPrice,
@@ -130,7 +134,6 @@ async function BUY() {
     );
     order.PaymentMethod=paymentMethodObj.num;
     await addOrder(order);
-    await addOrderItems(items);
     
 
     // For demonstration purposes, open a new page
@@ -206,16 +209,20 @@ document
 //////////////////////////
 
 async function addOrder(order) {
-  await fetch("http://localhost:3000/addOrder", {
+  const res=await fetch("http://localhost:3000/addOrder", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ order }),
   });
+  const data = await res.json();
+  orderId = data.insertId;
   console.log("succfully");
+  await addOrderItems(items);
   showSuccessNotification();
 }
+
 
 async function addAddress(address) {
   try {
@@ -232,7 +239,6 @@ async function addAddress(address) {
     }
 
     const data = await response.json();
-    console.log(data);
     address.AddressID = data.insertId;
     console.log(address);
 
@@ -250,7 +256,7 @@ async function addPMethod(method) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ method }),
+      body: JSON.stringify({ method, userID }),
     });
 
     if (!response.ok) {
@@ -277,7 +283,7 @@ function getCount(jsonArray){
 const mergedItemsMap = {};
 
 // Iterate through the items array
-items.forEach(item => {
+jsonArray.forEach(item => {
   // Check if an item with the same ItemID already exists in the mergedItemsMap
   if (mergedItemsMap.hasOwnProperty(item.ItemID)) {
     // Increment the count attribute
@@ -295,13 +301,14 @@ return mergedItemsArray;
 }
 
 async function addOrderItems(orderItems) {
-  orderItems.forEach(item=>{
+  console.log(order.OrderID)
+  await orderItems.forEach(item=>{
     fetch("http://localhost:3000/addOrderItem", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ item }),
+      body: JSON.stringify({ item,orderId }),
     });
   })
 }
