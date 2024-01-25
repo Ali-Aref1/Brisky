@@ -27,9 +27,9 @@ Welcome to our Grocery Shopping Web App repository! This application allows user
 
 ## Database Schema
 
-![ERD](assets\Readmess\BriskyERD.png)
+![ERD](assets/Readmess/BriskyERD.png)
 
----...........................--......
+...................................................................
 
 ![Mapping](assets/Readmess/Maping.png)
 
@@ -51,9 +51,13 @@ Our web application is designed to provide a seamless grocery shopping experienc
 
 Here are some snapshots of our web application in action:
 
-1. ![Screenshot 1](link_to_screenshot_1)
-2. ![Screenshot 2](link_to_screenshot_2)
-3. ...
+1. ![Capture 1](assets\Readmess\Capture_account_mangemdn.PNG)
+2. ![Capture 2](assets\Readmess\Capture_checkoutpage.PNG)
+3. ![Capture 3](assets\Readmess\Capture_chokout.PNG)
+4. ![Capture 4](assets\Readmess\Capture_home.PNG)
+5. ![Capture 5](assets\Readmess\Capture_item.PNG)
+6. ![Capture 6](assets\Readmess\Capture_peoducts.PNG)
+7. ![Capture 7](assets\Readmess\Capture_track_order.PNG)
 
 Combine all 7 captures on the same coordinates or create a visual representation of the web app layout.
 
@@ -68,10 +72,10 @@ To set up the project locally, follow these steps:
 
 ## Contributing
 
-We welcome contributions! If you'd like to contribute, please follow our [Contribution Guidelines](link_to_contributing_guidelines).
+No contriputing for now untill we buy a domain
 
 ## License
 
-This project is licensed under the [MIT License](link_to_license).
+This project is licensed under the Hazem hazoo license
 
 Feel free to reach out if you have any questions or issues. Happy coding!
