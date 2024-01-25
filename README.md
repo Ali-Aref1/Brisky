@@ -27,7 +27,7 @@ Welcome to our Grocery Shopping Web App repository! This application allows user
 
 ## Database Schema
 
-![ERD](assets/Readmess/Brisky ERD.png)
+![ERD](assets\Readmess\BriskyERD.png)
 
 ---...........................--......
 
