@@ -1,0 +1,1 @@
+Web app for grocery shopping. Allows users to make orders for grocery items from the nearest branch, and allows administrators to manage each branch.
