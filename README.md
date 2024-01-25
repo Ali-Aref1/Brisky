@@ -27,9 +27,13 @@ Welcome to our Grocery Shopping Web App repository! This application allows user
 
 ## Database Schema
 
+ERD:
+
 ![ERD](assets/Readmess/BriskyERD.png)
 
 ...................................................................
+
+Mpping each relation:
 
 ![Mapping](assets/Readmess/Maping.png)
 
@@ -51,13 +55,13 @@ Our web application is designed to provide a seamless grocery shopping experienc
 
 Here are some snapshots of our web application in action:
 
-1. ![Capture 1](assets\Readmess\Capture_account_mangemdn.PNG)
-2. ![Capture 2](assets\Readmess\Capture_checkoutpage.PNG)
-3. ![Capture 3](assets\Readmess\Capture_chokout.PNG)
-4. ![Capture 4](assets\Readmess\Capture_home.PNG)
-5. ![Capture 5](assets\Readmess\Capture_item.PNG)
-6. ![Capture 6](assets\Readmess\Capture_peoducts.PNG)
-7. ![Capture 7](assets\Readmess\Capture_track_order.PNG)
+1. ![Capture 1](assets/Readmess/Capture_account_mangemdn.PNG)
+2. ![Capture 2](assets/Readmess/Capture_checkoutpage.PNG)
+3. ![Capture 3](assets/Readmess/Capture_chokout.PNG)
+4. ![Capture 4](assets/Readmess/Capture_home.PNG)
+5. ![Capture 5](assets/Readmess/Capture_item.PNG)
+6. ![Capture 6](assets/Readmess/Capture_peoducts.PNG)
+7. ![Capture 7](assets/Readmess/Capture_track_order.PNG)
 
 Combine all 7 captures on the same coordinates or create a visual representation of the web app layout.
 
