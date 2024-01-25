@@ -27,7 +27,11 @@ Welcome to our Grocery Shopping Web App repository! This application allows user
 
 ## Database Schema
 
-![ERD](link_to_erd_image) - Add a link to the ERD image hosted online.
+![ERD](assets/Readmess/Brisky ERD.png)
+
+---...........................--......
+
+![Mapping](assets/Readmess/Maping.png)
 
 ## Web App Overview
 
